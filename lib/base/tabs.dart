@@ -19,18 +19,18 @@ class TabsState extends State<Tabs> {
   int _tabIndex = 1;
   bool isFinishSetup = false;
   List<Image> _tabImages = [
-    Image.asset('imgs/tabs_0_1.png'),
-    Image.asset('imgs/tabs_0_1.png'),
-    Image.asset('imgs/tabs_0_1.png'),
-    Image.asset('imgs/tabs_0_1.png'),
-    Image.asset('imgs/tabs_0_1.png'),
+    Image.asset('imgs/tabs_0_0.png'),
+    Image.asset('imgs/tabs_1_0.png'),
+    Image.asset('imgs/tabs_2_0.png'),
+    Image.asset('imgs/tabs_3_0.png'),
+    Image.asset('imgs/tabs_4_0.png'),
   ];
   List<Image> _tabSelectedImages = [
     Image.asset('imgs/tabs_0_1.png'),
-    Image.asset('imgs/tabs_0_1.png'),
-    Image.asset('imgs/tabs_0_1.png'),
-    Image.asset('imgs/tabs_0_1.png'),
-    Image.asset('imgs/tabs_0_1.png'),
+    Image.asset('imgs/tabs_1_1.png'),
+    Image.asset('imgs/tabs_2_1.png'),
+    Image.asset('imgs/tabs_3_1.png'),
+    Image.asset('imgs/tabs_4_1.png'),
   ];
 
   @override
