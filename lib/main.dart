@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
+import 'package:keep/base/tabs.dart';
 
 import 'base/route.dart';
 
@@ -14,6 +15,8 @@ void main() {
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
   }
 }
+
+final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 
 class Keep extends StatelessWidget {
   @override
@@ -28,8 +31,10 @@ class Keep extends StatelessWidget {
         const Locale('en', 'US'),
       ],
       debugShowCheckedModeBanner: false,
-      initialRoute: '/',
-      onGenerateRoute: onGenerateRoute,
+      // initialRoute: '/',
+      navigatorObservers: [routeObserver],
+      // onGenerateRoute: onGenerateRoute,
+      home: Tabs(),
     );
   }
 }

@@ -16,7 +16,7 @@ class Tabs extends StatefulWidget {
 }
 
 class TabsState extends State<Tabs> {
-  int _tabIndex = 1;
+  int _tabIndex = 0;
   bool isFinishSetup = false;
   List<Image> _tabImages = [
     Image.asset('imgs/tabs_0_0.png'),

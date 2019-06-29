@@ -1,0 +1,5 @@
+{
+    "pattern": "entry",
+    "entry": "$entry",
+    "position": 1
+}
