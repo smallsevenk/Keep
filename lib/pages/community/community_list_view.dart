@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:keep/base/public.dart';
+import 'package:keep/models/author.dart';
+import 'package:keep/models/entry.dart';
+import 'package:keep/models/entrys.dart';
 import 'package:keep/models/hot.dart';
 import 'package:keep/network/server.dart';
+import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+import 'package:keep/widgets/tile_card.dart';
 
 enum HomeListType {
   hot,
@@ -24,124 +30,98 @@ class CommunityListView extends StatefulWidget {
 
 class CommunityListViewState extends State<CommunityListView>
     with AutomaticKeepAliveClientMixin {
-  // List<CarouselInfo> carouselInfos = [];
-  int pageIndex = 1;
-  // List<HomeModule> modules = [];
-  Hot hotInfo;
+  ScrollController _scrollController = new ScrollController();
+  // int _beLoad = 0; // 0表示不显示, 1表示正在请求, 2表示没有更多数据
+  int _position = 0; //表示从第几条开始取
 
-  @override
-  void initState() {
-    super.initState();
-    // fetchData();
-  }
-
-  @override
-  bool get wantKeepAlive => true;
-
-  // Future<void> fetchData() async {
-  //   try {
-  //     var result;
-  //     switch (this.widget.type) {
-  //       case HomeListType.hot:
-  //         result = await Hot.request();
-  //         break;
-  //       case HomeListType.foucs:
-  //         result = await Hot.request();
-  //         break;
-  //       case HomeListType.topic:
-  //         result = await Hot.request();
-  //         break;
-  //       case HomeListType.local:
-  //         result = await Hot.request();
-  //         break;
-  //       default:
-  //         break;
-  //     }
-  //     // List moduleData = responseJson['module'];
-  //     // List<HomeModule> modules = [];
-  //     // moduleData.forEach((data) {
-  //     //   modules.add(HomeModule.fromJson(data));
-  //     // });
-  //     print(result);
-  //     setState(() {
-  //       // this.modules = modules;
-  //       // this.carouselInfos = carouselInfos;
-  //       this.res = result;
-  //     });
-  //   } catch (e) {
-  //     Toast.show(e.toString());
-  //   }
-  // }
-  Future<void> fetchData() async {
-    try {
-      Map<String, dynamic> hotJson = await Z6Srv.queryHot();
-
-      setState(() {
-        print(hotJson);
-        this.hotInfo = Hot.fromJson(hotJson);
-      });
-    } catch (e) {
-      Toast.show(e.toString());
-    }
-  }
-
-  // Widget bookCardWithInfo(HomeModule module) {
-  //   Widget card;
-  //   switch (module.style) {
-  //     case 1:
-  //       card = NovelFourGridView(module);
-  //       break;
-  //     case 2:
-  //       card = NovelSecondHybirdCard(module);
-  //       break;
-  //     case 3:
-  //       card = NovelFirstHybirdCard(module);
-  //       break;
-  //     case 4:
-  //       card = NovelNormalCard(module);
-  //       break;
-  //   }
-  //   return card;
-  // }
-
-  List<Widget> _getWrap(int idx) {
-    List<Widget> temp = new List<Widget>();
-    // res = res ?? {};
-    // this.res.forEach((v) {
-    //   print(v);
-    //   temp.add(Text('v'));
-    // });
-    return temp;
-  }
+  List<Entrys> posts = [];
 
   Widget buildModule() {
     if (this.widget.type == HomeListType.hot) {
-      return Row(
-        children: <Widget>[
-          Expanded(
-            child: Wrap(
-              // direction: Axis.vertical,
-              children: _getWrap(0),
-            ),
-          ),
-          Expanded(
-            child: Wrap(
-              direction: Axis.vertical,
-              children: _getWrap(0),
-            ),
-          )
-        ],
-      );
+      return StaggeredGridView.countBuilder(
+          controller: _scrollController,
+          itemCount: posts.length,
+          primary: false,
+          crossAxisCount: 4,
+          mainAxisSpacing: 4.0,
+          crossAxisSpacing: 4.0,
+          itemBuilder: (context, idx) {
+            String img;
+            String content;
+            String avatar;
+            String name;
+            String likes;
+            try {
+              Entry entry = posts[idx].entry ?? Entry();
+              List imgs = entry.images ?? [];
+              Author author = entry.author ?? Author();
+
+              img = imgs.length >= 1 ? imgs[0] : Api.hot_img;
+              content = entry.content ?? '默认测试内容';
+              avatar = author.avatar ?? Api.avatar;
+              name = author.username ?? '无名';
+              likes = (entry.likes ?? 0).toString();
+            } catch (e) {
+              print('-----ItemError-$idx:$e');
+              return Container();
+            } finally {
+              print('''\n      img:$img
+            content:$content
+            avatar:$avatar
+            name:$name
+            likes:$likes''');
+            }
+
+            return TileCard(
+                img: img,
+                content: content,
+                avatar: avatar,
+                name: name,
+                likes: likes,
+                worksAspectRatio: 10);
+          },
+          staggeredTileBuilder: (index) => StaggeredTile.fit(2));
     }
     return Container();
   }
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil.getInstance()..init(context);
     return Container(
-        child: RefreshIndicator(
-      onRefresh: fetchData,
-      child: buildModule(),
-    ));
+        child: RefreshIndicator(onRefresh: _refresh, child: buildModule()));
+  }
+
+  @override
+  bool get wantKeepAlive => true;
+
+  Future<void> _refresh() async {
+    _position = 0;
+    _fetchData();
+  }
+
+  Future<void> _fetchData() async {
+    Hot hot = await Z6Srv.queryHot(_position.toString());
+    setState(() {
+      if (_position == 0) {
+        posts.clear();
+      }
+      posts.addAll(hot.data.items);
+    });
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // 首次拉取数据
+    _fetchData();
+    _scrollController.addListener(() {
+      if (_scrollController.position.pixels ==
+          _scrollController.position.maxScrollExtent) {
+        _position = posts.length;
+        _fetchData();
+        print('我监听到底部了!');
+      }
+    });
   }
 }

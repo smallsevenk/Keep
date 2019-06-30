@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:keep/base/public.dart';
-import 'package:keep/models/hot.dart';
-import 'package:keep/network/server.dart';
+import 'community_list_view.dart';
 
 class CommunityPage extends StatefulWidget {
   CommunityPage({Key key}) : super(key: key);
@@ -10,27 +9,6 @@ class CommunityPage extends StatefulWidget {
 }
 
 class _CommunityPageState extends State<CommunityPage> {
-  Hot hotInfo;
-  @override
-  void initState() {
-    super.initState();
-    fetchData();
-  }
-
-  Future<void> fetchData() async {
-    try {
-      Map<String, dynamic> hotJson = await Z6Srv.queryHot();
-      print('-------------------------');
-      setState(() {
-        this.hotInfo = Hot.fromJson(hotJson);
-        print(this.hotInfo);
-      });
-    } catch (e) {
-      print(e.toString());
-      Toast.show(e.toString());
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return DefaultTabController(
@@ -60,11 +38,10 @@ class _CommunityPageState extends State<CommunityPage> {
           elevation: 0,
         ),
         body: TabBarView(children: [
-          Text('data'), Text('data'), Text('data'), Text('data'),
-          // CommunityListView(HomeListType.hot),
-          // CommunityListView(HomeListType.foucs),
-          // CommunityListView(HomeListType.topic),
-          // CommunityListView(HomeListType.local),
+          CommunityListView(HomeListType.hot),
+          CommunityListView(HomeListType.foucs),
+          CommunityListView(HomeListType.topic),
+          CommunityListView(HomeListType.local),
         ]),
       ),
     );
