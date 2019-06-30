@@ -1,6 +1,6 @@
 # keep
 
-学习Flutter就要从撸App开始，Let's go.
+学习就要从撸App开始，Let's go.
 
 ## 所学知识点
 配置AppIcon和启动图  
