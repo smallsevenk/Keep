@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
 
 class Z6Color {
-  static Color primary = Color(0xFF23B38E);
+  //keep
+  static Color deep_kgray = Color(0xff564f5f);
+  static Color kgray = Color(0xff999999);
+  static Color light_kgray = Color(0xffcccccc);
+
+  static Color primary = Color(0xff564f5f);
   static Color secondary = Color(0xFF51DEC6);
   static Color red = Color(0xFFFF2B45);
   static Color orange = Color(0xFFF67264);

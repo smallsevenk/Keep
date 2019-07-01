@@ -38,49 +38,54 @@ class CommunityListViewState extends State<CommunityListView>
 
   Widget buildModule() {
     if (this.widget.type == HomeListType.hot) {
-      return StaggeredGridView.countBuilder(
-          controller: _scrollController,
-          itemCount: posts.length,
-          primary: false,
-          crossAxisCount: 4,
-          mainAxisSpacing: 4.0,
-          crossAxisSpacing: 4.0,
-          itemBuilder: (context, idx) {
-            String img;
-            String content;
-            String avatar;
-            String name;
-            String likes;
-            try {
-              Entry entry = posts[idx].entry ?? Entry();
-              List imgs = entry.images ?? [];
-              Author author = entry.author ?? Author();
+      return Container(
+        padding: EdgeInsets.all(margin8),
+        child: StaggeredGridView.countBuilder(
+            controller: _scrollController,
+            itemCount: posts.length,
+            primary: false,
+            crossAxisCount: 4,
+            mainAxisSpacing: 4.0,
+            crossAxisSpacing: 4.0,
+            itemBuilder: (context, idx) {
+              String img;
+              String content;
+              String avatar;
+              String name;
+              String likes;
+              try {
+                Entry entry = posts[idx].entry ?? Entry();
+                List imgs = entry.images ?? [];
+                Author author = entry.author ?? Author();
 
-              img = imgs.length >= 1 ? imgs[0] : Api.hot_img;
-              content = entry.content ?? '默认测试内容';
-              avatar = author.avatar ?? Api.avatar;
-              name = author.username ?? '无名';
-              likes = (entry.likes ?? 0).toString();
-            } catch (e) {
-              print('-----ItemError-$idx:$e');
-              return Container();
-            } finally {
-              print('''\n      img:$img
+                img = imgs.length >= 1 ? imgs[0] : Api.hot_img;
+                content = entry.content ?? '默认测试内容';
+                avatar = author.avatar ?? Api.avatar;
+                name = author.username ?? '无名';
+                likes = (entry.likes ?? 0).toString();
+              } catch (e) {
+                print('-----ItemError-$idx:$e');
+                return Container();
+              } finally {
+                print('''\n      img:$img
             content:$content
             avatar:$avatar
             name:$name
             likes:$likes''');
-            }
+                print('------' + (idx % 3).toString());
+              }
 
-            return TileCard(
+              return TileCard(
                 img: img,
                 content: content,
                 avatar: avatar,
                 name: name,
                 likes: likes,
-                worksAspectRatio: 10);
-          },
-          staggeredTileBuilder: (index) => StaggeredTile.fit(2));
+                isVip: idx % 3 == 0 ? true : false,
+              );
+            },
+            staggeredTileBuilder: (index) => StaggeredTile.fit(2)),
+      );
     }
     return Container();
   }

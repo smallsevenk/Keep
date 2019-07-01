@@ -71,7 +71,8 @@ class TabsState extends State<Tabs> {
       ),
       bottomNavigationBar: CupertinoTabBar(
         backgroundColor: Colors.white,
-        activeColor: Z6Color.primary,
+        activeColor: Z6Color.deep_kgray,
+        inactiveColor: Z6Color.kgray,
         items: <BottomNavigationBarItem>[
           BottomNavigationBarItem(icon: getTabIcon(0), title: Text('社区')),
           BottomNavigationBarItem(icon: getTabIcon(1), title: Text('探索')),
