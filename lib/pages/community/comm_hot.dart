@@ -15,7 +15,7 @@ class _MainCollapsingToolbarState extends State<MainCollapsingToolbar> {
           headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
             return <Widget>[
               SliverAppBar(
-                expandedHeight: 200.0,
+                expandedHeight: 100.0,
                 floating: false,
                 pinned: true,
                 flexibleSpace: FlexibleSpaceBar(
@@ -26,7 +26,7 @@ class _MainCollapsingToolbarState extends State<MainCollapsingToolbar> {
                           fontSize: 16.0,
                         )),
                     background: Image.network(
-                      "https://images.pexels.com/photos/396547/pexels-photo-396547.jpeg?auto=compress&cs=tinysrgb&h=350",
+                      "https://p.ssl.qhimg.com/dmfd/400_300_/t0120b2f23b554b8402.jpg",
                       fit: BoxFit.cover,
                     )),
               ),
@@ -45,8 +45,53 @@ class _MainCollapsingToolbarState extends State<MainCollapsingToolbar> {
               ),
             ];
           },
-          body: Center(
-            child: Text("Sample text"),
+          body: ListView(
+            children: <Widget>[
+              Container(
+                height: 50,
+                child: Text("Sample text"),
+              ),
+              Container(
+                height: 50,
+                child: Text("Sample text"),
+              ),
+              Container(
+                height: 50,
+                child: Text("Sample text"),
+              ),
+              Container(
+                height: 50,
+                child: Text("Sample text"),
+              ),
+              Container(
+                height: 50,
+                child: Text("Sample text"),
+              ),
+              Container(
+                height: 50,
+                child: Text("Sample text"),
+              ),
+              Container(
+                height: 50,
+                child: Text("Sample text"),
+              ),
+              Container(
+                height: 50,
+                child: Text("Sample text"),
+              ),
+              Container(
+                height: 50,
+                child: Text("Sample text"),
+              ),
+              Container(
+                height: 50,
+                child: Text("Sample text"),
+              ),
+              Container(
+                height: 50,
+                child: Text("Sample text"),
+              ),
+            ],
           ),
         ),
       ),

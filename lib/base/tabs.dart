@@ -9,6 +9,7 @@ import '../pages/explore/explore_root.dart';
 import '../pages/sport/sport_root.dart';
 import '../pages/plan/plan_root.dart';
 import '../pages/me/me_root.dart';
+import '../pages/community/comm_hot.dart';
 
 class Tabs extends StatefulWidget {
   @override
@@ -62,7 +63,7 @@ class TabsState extends State<Tabs> {
       body: IndexedStack(
         children: <Widget>[
           CommunityPage(),
-          ExplorePage(),
+          MainCollapsingToolbar(),
           SportPage(),
           PlanPage(),
           MePage(),

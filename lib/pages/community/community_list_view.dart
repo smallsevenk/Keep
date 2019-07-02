@@ -39,6 +39,7 @@ class CommunityListViewState extends State<CommunityListView>
   Widget buildModule() {
     if (this.widget.type == HomeListType.hot) {
       return Container(
+        color: Colors.white,
         padding: EdgeInsets.all(margin8),
         child: StaggeredGridView.countBuilder(
             controller: _scrollController,
@@ -67,12 +68,12 @@ class CommunityListViewState extends State<CommunityListView>
                 print('-----ItemError-$idx:$e');
                 return Container();
               } finally {
-                print('''\n      img:$img
-            content:$content
-            avatar:$avatar
-            name:$name
-            likes:$likes''');
-                print('------' + (idx % 3).toString());
+                //     print('''\n      img:$img
+                // content:$content
+                // avatar:$avatar
+                // name:$name
+                // likes:$likes''');
+                //     print('------' + (idx % 3).toString());
               }
 
               return TileCard(
@@ -126,6 +127,9 @@ class CommunityListViewState extends State<CommunityListView>
         _position = posts.length;
         _fetchData();
         print('我监听到底部了!');
+      } else if (_scrollController.position.pixels ==
+          _scrollController.position.minScrollExtent) {
+        print('下拉下拉下拉下拉下拉下拉下拉下拉下拉下拉!');
       }
     });
   }
