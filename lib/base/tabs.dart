@@ -3,13 +3,15 @@ import 'package:flutter/cupertino.dart';
 // import 'package:shared_preferences/shared_preferences.dart';
 
 import 'package:keep/base/public.dart';
+import 'package:keep/pages/community/comm_root_scene.dart';
+import 'package:keep/pages/community/test.dart';
 
 import '../pages/community/community_root.dart';
 import '../pages/explore/explore_root.dart';
 import '../pages/sport/sport_root.dart';
 import '../pages/plan/plan_root.dart';
 import '../pages/me/me_root.dart';
-import '../pages/community/comm_hot.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Tabs extends StatefulWidget {
   @override
@@ -55,6 +57,7 @@ class TabsState extends State<Tabs> {
 
   @override
   Widget build(BuildContext context) {
+    ScreenUtil.instance = ScreenUtil(width: 750, height: 1334)..init(context);
     if (!isFinishSetup) {
       return Container();
     }
@@ -62,8 +65,8 @@ class TabsState extends State<Tabs> {
     return Scaffold(
       body: IndexedStack(
         children: <Widget>[
-          CommunityPage(),
-          MainCollapsingToolbar(),
+          CommPage(),
+          KeepCommRootScene(),
           SportPage(),
           PlanPage(),
           MePage(),
@@ -71,7 +74,7 @@ class TabsState extends State<Tabs> {
         index: _tabIndex,
       ),
       bottomNavigationBar: CupertinoTabBar(
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.red,
         activeColor: Z6Color.deep_kgray,
         inactiveColor: Z6Color.kgray,
         items: <BottomNavigationBarItem>[
