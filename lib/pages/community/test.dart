@@ -19,7 +19,7 @@ class CommPage extends StatefulWidget {
 class _CommunityPageState extends State<CommPage>
     with SingleTickerProviderStateMixin, AutomaticKeepAliveClientMixin {
   TabController _tabController;
-  static double _screenHeight = ScreenUtil.screenHeight;
+  static double _screenHeight = ScreenUtil().setHeight(ScreenUtil.screenHeight);
   static double _statusBarHeight = ScreenUtil.statusBarHeight;
   static double _tabBarTop = _statusBarHeight + kToolbarHeight;
   static double _tabBarHeight = 50;
@@ -59,37 +59,36 @@ class _CommunityPageState extends State<CommPage>
       double _scviewPosition = _scrollController.position.pixels;
       double _scviewMinPosition = _scrollController.position.minScrollExtent;
       double _scviewMaxPosition = _scrollController.position.maxScrollExtent;
-
-      // if (_scviewPosition > _scviewMinPosition &&
-      //     _scviewPosition < _scviewMaxPosition &&
-      //     _tabBarTop > _statusBarHeight) {
-      //   setState(() {
-      //     print('---------' + _scviewPosition.toString());
-      //     //往上覆盖
-      //     print('缩小-----');
-      //     _scviewPosition = _scviewPosition > kToolbarHeight
-      //         ? kToolbarHeight
-      //         : _scviewPosition; //防止一次性拉动距离过大
-      //     _tabBarTop = kToolbarHeight - _scviewPosition + _statusBarHeight;
-      //     _setBodyFrame();
-      //   });
-      //   // } else if (_tabBarTop < Screen.navigationBarHeight &&
-      //   //     _tabBarTop >= _tabBarMinTop) {
-      //   //   print('还原-----');
-      //   //   _scviewPosition = -_scviewPosition;
-      //   //   //防止一次性拉动距离过大
-      //   //   _scviewPosition =
-      //   //       _scviewPosition > (Screen.navigationBarHeight - _tabBarMinTop)
-      //   //           ? Screen.navigationBarHeight - _tabBarMinTop
-      //   //           : _scviewPosition;
-      //   //   setState(() {
-      //   //     // 执行动画
-      //   //     // controller.forward();
-      //   //     _tabBarTop = _scviewPosition;
-      //   //     _setBodyFrame();
-      //   //   });
-      // } else
-      if (_scviewPosition == _scviewMaxPosition) {
+      print(_scviewPosition);
+      print(_tabBarTop);
+      print(_statusBarHeight);
+      if (_scviewPosition > _scviewMinPosition &&
+          _scviewPosition < _scviewMaxPosition &&
+          _tabBarTop > _statusBarHeight) {
+        setState(() {
+          //往上覆盖
+          print('缩小-----');
+          _scviewPosition = _scviewPosition > kToolbarHeight
+              ? kToolbarHeight
+              : _scviewPosition; //防止一次性拉动距离过大
+          _tabBarTop = kToolbarHeight - _scviewPosition + _statusBarHeight;
+          _setBodyFrame();
+        });
+        // } else if (_tabBarTop < (_statusBarHeight + kToolbarHeight) &&
+        //     _tabBarTop >= _statusBarHeight) {
+        //   print('还原-----');
+        //   _scviewPosition = _scviewPosition.abs();
+        //   //防止一次性拉动距离过大
+        //   _scviewPosition = _scviewPosition > kToolbarHeight
+        //       ? _statusBarHeight + _scviewPosition
+        //       : _scviewPosition + kToolbarHeight;
+        //   setState(() {
+        //     // 执行动画
+        //     // controller.forward();
+        //     _tabBarTop = _scviewPosition;
+        //     _setBodyFrame();
+        //   });
+      } else if (_scviewPosition == _scviewMaxPosition) {
         //从多少条数据后面开始取数据
         _position = posts.length;
         _fetchData();
@@ -110,12 +109,8 @@ class _CommunityPageState extends State<CommPage>
 
   //配置bodyFrame
   _setBodyFrame() {
-    print('--------');
-    print(ScreenUtil().setHeight(_tabBarTop + _tabBarHeight + 5));
-    print(_tabBarTop + _tabBarHeight + 5);
     _bodyTop = _tabBarTop + _tabBarHeight;
-    _bodyHeight =
-        ScreenUtil().setHeight(_screenHeight - _bodyTop - kToolbarHeight) - 50;
+    _bodyHeight = _screenHeight - _bodyTop - _tabBarHeight;
   }
 
   Future<void> _fetchData() async {
@@ -157,6 +152,7 @@ class _CommunityPageState extends State<CommPage>
       padding: EdgeInsets.fromLTRB(margin8, margin8, margin8, 0),
       child: StaggeredGridView.countBuilder(
           controller: _scrollController,
+          physics: NeverScrollableScrollPhysics(),
           itemCount: posts.length,
           primary: false,
           crossAxisCount: 4,
@@ -233,8 +229,17 @@ class _CommunityPageState extends State<CommPage>
         child: Stack(
           children: <Widget>[
             AppBar(
-              backgroundColor: Colors.white,
+              // backgroundColor: Colors.white,
               title: Text('keep'),
+              actions: <Widget>[
+                new IconButton(
+                  // action button
+                  icon: new Icon(Icons.people),
+                  onPressed: () {
+                    print('object');
+                  },
+                ),
+              ],
             ),
             Positioned(
               //TabBar

@@ -9,7 +9,7 @@ import '../pages/me/me_root.dart';
 final routes = {
   '/': (context, {arguments}) => Tabs(),
   '/community_root': (context, {arguments}) => CommunityPage(),
-  '/explore_root': (context, {arguments}) => ExplorePage(),
+  '/explore_root': (context, {arguments}) => ExploreRootScene(),
   '/sport_root': (context) => SportPage(),
   '/plan_root': (context) => PlanPage(),
   '/me_root': (context) => MePage(),

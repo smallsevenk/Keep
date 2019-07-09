@@ -9,8 +9,19 @@ class SportPage extends StatefulWidget {
 class _SportPageState extends State<SportPage> {
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Text('运动'),
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Title'),
+      ),
+      body: Container(
+        color: Colors.white,
+        child: ListView(
+          children: <Widget>[
+            Container(height: 100, color: Colors.red),
+            Container(height: 100, color: Colors.blue),
+          ],
+        ),
+      ),
     );
   }
 }

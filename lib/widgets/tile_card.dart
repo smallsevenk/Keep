@@ -16,6 +16,7 @@ class TileCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Card(
+      color: Colors.white,
       margin: EdgeInsets.all(0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,13 +34,13 @@ class TileCard extends StatelessWidget {
           ),
           Container(
             padding:
-                EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(20)),
-            margin: EdgeInsets.symmetric(vertical: ScreenUtil().setWidth(10)),
+                EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(10)),
+            margin: EdgeInsets.symmetric(vertical: ScreenUtil().setWidth(5)),
             child: Text(
               '$content',
               style: TextStyle(
                   color: Color(0xff343434),
-                  fontSize: ScreenUtil().setSp(34),
+                  fontSize: ScreenUtil().setSp(17),
                   fontWeight: FontWeight.bold),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
@@ -47,30 +48,30 @@ class TileCard extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.only(
-                left: ScreenUtil().setWidth(20),
-                bottom: ScreenUtil().setWidth(20)),
+                left: ScreenUtil().setWidth(10),
+                bottom: ScreenUtil().setWidth(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Stack(
                   children: <Widget>[
                     Container(
-                      width: ScreenUtil().setWidth(60),
-                      height: ScreenUtil().setWidth(60),
+                      width: ScreenUtil().setWidth(28),
+                      height: ScreenUtil().setWidth(28),
                       // color: Colors.red,
                     ),
                     Positioned(
-                      width: ScreenUtil().setWidth(56),
-                      height: ScreenUtil().setWidth(56),
+                      width: ScreenUtil().setWidth(26),
+                      height: ScreenUtil().setWidth(26),
                       child: CircleAvatar(
                         backgroundImage: NetworkImage('$avatar'),
-                        radius: ScreenUtil().setWidth(28),
+                        radius: ScreenUtil().setWidth(12),
                       ),
                     ),
                     isVip
                         ? Positioned(
-                            width: 12,
-                            height: 12,
+                            width: ScreenUtil().setWidth(12),
+                            height: ScreenUtil().setWidth(12),
                             bottom: 0,
                             right: 0,
                             child: CircleAvatar(
@@ -80,10 +81,10 @@ class TileCard extends StatelessWidget {
                         : Text(''),
                     isVip
                         ? Positioned(
-                            width: 10,
-                            height: 10,
-                            bottom: 1,
-                            right: 1,
+                            width: ScreenUtil().setWidth(10),
+                            height: ScreenUtil().setWidth(10),
+                            bottom: ScreenUtil().setWidth(1),
+                            right: ScreenUtil().setWidth(1),
                             child: CircleAvatar(
                               backgroundImage: AssetImage('imgs/vip.png'),
                               // radius: ScreenUtil().setWidth(28),
@@ -93,32 +94,39 @@ class TileCard extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: ScreenUtil().setWidth(20)),
-                  width: ScreenUtil().setWidth(230),
+                  margin: EdgeInsets.only(left: ScreenUtil().setWidth(10)),
+                  width: ScreenUtil().setWidth(220),
                   child: Text(
                     '$name',
                     style: TextStyle(
                       color: Color(0xff343434),
-                      fontSize: ScreenUtil().setSp(25),
+                      fontSize: ScreenUtil().setSp(12),
                     ),
                   ),
                 ),
                 Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(left: ScreenUtil().setWidth(65)),
-                    child: Image.asset('imgs/like.png'),
-                  ),
-                ),
-                Expanded(
-                  child: Container(
-                    margin: EdgeInsets.only(left: ScreenUtil().setWidth(10)),
-                    child: Text(
-                      '$likes',
-                      style: TextStyle(
-                        color: Z6Color.kgray,
-                        fontSize: ScreenUtil().setSp(25),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    children: <Widget>[
+                      Container(
+                        margin:
+                            EdgeInsets.only(right: ScreenUtil().setWidth(5)),
+                        width: ScreenUtil().setWidth(20),
+                        height: ScreenUtil().setWidth(20),
+                        child: Image.asset('imgs/like.png'),
                       ),
-                    ),
+                      Container(
+                        margin:
+                            EdgeInsets.only(right: ScreenUtil().setWidth(10)),
+                        child: Text(
+                          '$likes',
+                          style: TextStyle(
+                            color: Z6Color.kgray,
+                            fontSize: ScreenUtil().setSp(12),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                 )
               ],

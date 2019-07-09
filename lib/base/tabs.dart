@@ -19,7 +19,7 @@ class Tabs extends StatefulWidget {
 }
 
 class TabsState extends State<Tabs> {
-  int _tabIndex = 0;
+  int _tabIndex = 1;
   bool isFinishSetup = false;
   List<Image> _tabImages = [
     Image.asset('imgs/tabs_0_0.png'),
@@ -65,8 +65,8 @@ class TabsState extends State<Tabs> {
     return Scaffold(
       body: IndexedStack(
         children: <Widget>[
-          CommPage(),
           KeepCommRootScene(),
+          ExploreRootScene(),
           SportPage(),
           PlanPage(),
           MePage(),
@@ -74,7 +74,7 @@ class TabsState extends State<Tabs> {
         index: _tabIndex,
       ),
       bottomNavigationBar: CupertinoTabBar(
-        backgroundColor: Colors.red,
+        backgroundColor: Colors.white,
         activeColor: Z6Color.deep_kgray,
         inactiveColor: Z6Color.kgray,
         items: <BottomNavigationBarItem>[
