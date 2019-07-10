@@ -107,7 +107,7 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
 
   Widget _refreshView() {
     return Container(
-      color: Z6Color.red,
+      color: Z6Color.bg_gray,
       padding: EdgeInsets.fromLTRB(margin8, margin8, margin8, 0),
       child: SafeArea(
         child: EasyRefresh(
