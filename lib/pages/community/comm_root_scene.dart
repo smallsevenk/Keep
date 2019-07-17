@@ -110,6 +110,7 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
       color: Z6Color.bg_gray,
       padding: EdgeInsets.fromLTRB(margin8, margin8, margin8, 0),
       child: SafeArea(
+        top: false,
         child: EasyRefresh(
           key: _easyRefreshKey,
           behavior: ScrollOverBehavior(),

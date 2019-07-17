@@ -1,14 +1,17 @@
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:date_format/date_format.dart';
 import 'package:flutter/material.dart';
 import 'package:keep/base/public.dart';
 import 'package:flutter_easyrefresh/easy_refresh.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
-import 'package:flutter/cupertino.dart';
+import 'explore_class.dart';
 
 class ExploreRootScene extends StatefulWidget {
   @override
   _ExploreRootSceneState createState() => _ExploreRootSceneState();
 }
+
+const VARIANTS_PRIMARY = Color.fromRGBO(0, 119, 253, 1);
 
 class _ExploreRootSceneState extends State<ExploreRootScene> {
   GlobalKey<EasyRefreshState> _easyRefreshKey =
@@ -123,7 +126,6 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
         enlargeCenterPage: false,
         items: imgList.map((url) {
           var img = 'https://static1.keepcdn.com$url';
-          print('xxxx:$img');
           return new Builder(
             builder: (BuildContext context) {
               return Container(
@@ -156,21 +158,40 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
       onTap: () {
         Toast.show(title);
       },
-      child: ListTile(
-        title: Text(
-          title,
-          style: TextStyle(
-              fontSize: ScreenUtil().setSp(28), color: Z6Color.deep_kgray),
-        ),
-        trailing: showDetail
-            ? Container(
-                width: ScreenUtil().setHeight(17),
-                height: ScreenUtil().setHeight(30),
-                child: Image(
-                  image: AssetImage('imgs/comm_detail.png'),
+      child: Row(
+        children: <Widget>[
+          SizedBox(
+            width: ScreenUtil().setWidth(28),
+            height: ScreenUtil().setWidth(78),
+          ),
+          Text(
+            title,
+            style: TextStyle(
+                fontSize: ScreenUtil().setSp(28), color: Z6Color.deep_kgray),
+          ),
+          Expanded(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.end,
+              children: <Widget>[
+                Container(
+                  height: ScreenUtil().setWidth(78),
+                  child: showDetail
+                      ? Container(
+                          width: ScreenUtil().setHeight(17),
+                          height: ScreenUtil().setHeight(30),
+                          child: Image(
+                            image: AssetImage('imgs/comm_detail.png'),
+                          ),
+                        )
+                      : Text(''),
                 ),
-              )
-            : Text(''),
+                SizedBox(
+                  width: ScreenUtil().setWidth(28),
+                ),
+              ],
+            ),
+          )
+        ],
       ),
     );
   }
@@ -223,6 +244,7 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
     ];
     return SafeArea(
       child: GridView.count(
+          physics: NeverScrollableScrollPhysics(),
           crossAxisCount: 2,
           childAspectRatio: 197 / 125,
           crossAxisSpacing: ScreenUtil().setWidth(16),
@@ -233,42 +255,210 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
             double _rightPadding = 0;
             var img =
                 'imgs/explore_hot_activity_0' + (_idx + 1).toString() + '.png';
-            print('-----$img');
             if ((_idx % 2).isOdd) {
               _rightPadding = _leftPadding;
               _leftPadding = 0;
             }
-            return Container(
-              padding: EdgeInsets.fromLTRB(_leftPadding, 0, _rightPadding, 0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: <Widget>[
-                  ClipRRect(
-                    child: Image.asset(img),
-                    borderRadius: BorderRadius.circular(3),
-                  ),
-                  SizedBox(height: ScreenUtil().setHeight(10)),
-                  Text(
-                    v['title'],
-                    style: TextStyle(
-                      color: Z6Color.deep_kgray,
-                      fontSize: ScreenUtil().setSp(24),
-                      fontWeight: FontWeight.bold,
+            return InkWell(
+              onTap: () {
+                Toast.show(v['title']);
+              },
+              child: Container(
+                padding: EdgeInsets.fromLTRB(_leftPadding, 0, _rightPadding, 0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    ClipRRect(
+                      child: Image.asset(img),
+                      borderRadius: BorderRadius.circular(3),
                     ),
-                  ),
-                  SizedBox(height: ScreenUtil().setHeight(10)),
-                  Text(
-                    v['num'] + ' 已参加',
-                    style: TextStyle(
-                      color: Z6Color.light_kgray,
-                      fontSize: ScreenUtil().setSp(22),
+                    SizedBox(height: ScreenUtil().setHeight(10)),
+                    Text(
+                      v['title'],
+                      style: TextStyle(
+                        color: Z6Color.deep_kgray,
+                        fontSize: ScreenUtil().setSp(24),
+                        fontWeight: FontWeight.bold,
+                      ),
                     ),
-                  )
-                ],
+                    SizedBox(height: ScreenUtil().setHeight(10)),
+                    Text(
+                      v['num'] + ' 已参加',
+                      style: TextStyle(
+                        color: Z6Color.light_kgray,
+                        fontSize: ScreenUtil().setSp(22),
+                      ),
+                    )
+                  ],
+                ),
               ),
             );
           }).toList()),
     );
+  }
+
+  _funExplore() {
+    List _entrances = [
+      {
+        "name": "K 星物语",
+        "description": "",
+        "imgUrl":
+            "https://static1.keepcdn.com/2019/04/22/11/1555903832078_330x330.png",
+        "schema": "https://m.gotokeep.com/glue-web?fullscreen=1",
+        "ipadImg": null
+      },
+      {
+        "name": "每日一答",
+        "description": "",
+        "imgUrl":
+            "https://static1.keepcdn.com/2019/04/22/11/1555904571696_330x330.png",
+        "schema": "https://activity.gotokeep.com/lab/daily-quiz",
+        "ipadImg": null
+      },
+      {
+        "name": "跳跃小游戏",
+        "description": "",
+        "imgUrl":
+            "https://static1.keepcdn.com/2019/04/22/11/1555903917312_330x330.png",
+        "schema":
+            "https://m.gotokeep.com/training/jumpGames/entry?fullscreen=true ",
+        "ipadImg": null
+      }
+    ];
+    return GridView.count(
+        physics: NeverScrollableScrollPhysics(),
+        crossAxisCount: 3,
+        crossAxisSpacing: ScreenUtil().setWidth(16),
+        mainAxisSpacing: 0,
+        children: _entrances.map((v) {
+          return InkWell(
+            onTap: () {
+              Toast.show(v['name']);
+            },
+            child: ClipRRect(
+              child: CachedNetworkImage(
+                imageUrl: v['imgUrl'],
+                fit: BoxFit.cover,
+              ),
+              borderRadius: BorderRadius.circular(3),
+            ),
+          );
+        }).toList());
+  }
+
+  _classTopic() {
+    return classInfoList.map((v) {
+      List plans = v['plans'];
+      return Container(
+        height: ScreenUtil().setHeight(770),
+        padding: EdgeInsets.fromLTRB(ScreenUtil().setWidth(16), 0,
+            ScreenUtil().setWidth(16), ScreenUtil().setWidth(16)),
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(5),
+              image: DecorationImage(
+                  image: AssetImage(
+                      'imgs/explore_class_topic_bg${v['color']}.png'),
+                  fit: BoxFit.fill)),
+          child: Column(
+            children: <Widget>[
+              Stack(
+                alignment: Alignment.center,
+                children: <Widget>[
+                  ClipRRect(
+                    child: CachedNetworkImage(
+                      imageUrl: v['recPicture'],
+                      fit: BoxFit.cover,
+                    ),
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(5),
+                        topRight: Radius.circular(5)),
+                  ),
+                  ListTile(
+                    title: Text(
+                      v['name'],
+                      style: TextStyle(
+                          fontSize: ScreenUtil().setSp(40),
+                          color: Colors.white),
+                    ),
+                    subtitle: Text(
+                      v['description'],
+                      style: TextStyle(
+                          fontSize: ScreenUtil().setSp(20),
+                          color: Colors.white),
+                    ),
+                    trailing: Container(
+                      width: ScreenUtil().setWidth(40),
+                      height: ScreenUtil().setHeight(40),
+                      child:
+                          Image.asset('imgs/explore_class_section_right.png'),
+                    ),
+                  )
+                ],
+              ),
+              Container(
+                height: ScreenUtil().setHeight(520),
+                padding: EdgeInsets.fromLTRB(ScreenUtil().setWidth(20), 0,
+                    ScreenUtil().setWidth(20), ScreenUtil().setWidth(20)),
+                child: Container(
+                  padding: EdgeInsets.all(0),
+                  decoration: BoxDecoration(
+                      color: Z6Color.white,
+                      borderRadius: BorderRadius.circular(5)),
+                  child: ListView(
+                      children: ListTile.divideTiles(
+                              context: context, tiles: _planListTiles(plans))
+                          .toList()),
+                ),
+              )
+            ],
+          ),
+        ),
+      );
+    }).toList();
+  }
+
+  _planListTiles(List plan) {
+    return plan.map((plan) {
+      return Container(
+        // height: 88,
+        // color: Colors.red,
+        child: ListTile(
+          leading: Container(
+            width: ScreenUtil().setWidth(100),
+            height: ScreenUtil().setWidth(100),
+            child: ClipRRect(
+              child: CachedNetworkImage(
+                imageUrl: plan['picture'],
+                fit: BoxFit.cover,
+              ),
+              borderRadius: BorderRadius.circular(3),
+            ),
+          ),
+          title: Text(
+            plan['title'],
+            style: TextStyle(fontSize: ScreenUtil().setSp(28)),
+          ),
+          subtitle: Text(
+            'K${plan['difficulty']} ${_keppLev(plan['difficulty'])}·${plan['averageDuration']}分钟',
+            style: TextStyle(
+                fontSize: ScreenUtil().setSp(20), color: Z6Color.light_kgray),
+          ),
+        ),
+      );
+    }).toList();
+  }
+
+  _keppLev(lev) {
+    if (lev == 1) {
+      return '零基础';
+    } else if (lev == 2) {
+      return '初级';
+    } else if (lev == 3) {
+      return '入门';
+    } else {
+      return '强化';
+    }
   }
 
   Widget _refreshView() {
@@ -307,12 +497,41 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
           children: <Widget>[
             _sectionView('全站热门活动', true),
             Container(
-              height: 300,
+              height: ScreenUtil().setHeight(510),
               child: _hotActivity(),
             ),
             SizedBox(height: ScreenUtil().setHeight(40)),
+            Container(
+              height: ScreenUtil().setHeight(22),
+              color: Z6Color.bg_gray,
+            ),
           ],
         ),
+        //��四栏
+        Column(
+          children: <Widget>[
+            _sectionView('趣味探索', true),
+            Container(
+              padding: EdgeInsets.fromLTRB(
+                  ScreenUtil().setWidth(16), 0, ScreenUtil().setWidth(16), 0),
+              height: ScreenUtil().setHeight(310),
+              child: _funExplore(),
+            ),
+            Container(
+              height: ScreenUtil().setHeight(22),
+              color: Z6Color.bg_gray,
+            ),
+          ],
+        ),
+        //第五栏
+        Column(
+          children: <Widget>[
+            _sectionView('课程专题', false),
+            Column(
+              children: _classTopic(),
+            )
+          ],
+        )
       ],
     );
   }
@@ -320,7 +539,6 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
   Widget _easyRefresh() {
     return Container(
       color: Z6Color.white,
-      // padding: EdgeInsets.fromLTRB(0, 0, 0, 0),
       child: EasyRefresh(
         key: _easyRefreshKey,
         behavior: ScrollOverBehavior(),
@@ -396,6 +614,7 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
   @override
   Widget build(BuildContext context) {
     _supCtr = _getSuperWidget();
+
     return Scaffold(
       body: DefaultTabController(
         length: 4,
