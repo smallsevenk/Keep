@@ -1,12 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
-// import 'package:shared_preferences/shared_preferences.dart';
-
 import 'package:keep/base/public.dart';
 import 'package:keep/pages/community/comm_root_scene.dart';
-import 'package:keep/pages/community/test.dart';
-
-import '../pages/community/community_root.dart';
 import '../pages/explore/explore_root.dart';
 import '../pages/sport/sport_root.dart';
 import '../pages/plan/plan_root.dart';
@@ -19,7 +14,7 @@ class Tabs extends StatefulWidget {
 }
 
 class TabsState extends State<Tabs> {
-  int _tabIndex = 1;
+  int _tabIndex = 2;
   bool isFinishSetup = false;
   List<Image> _tabImages = [
     Image.asset('imgs/tabs_0_0.png'),

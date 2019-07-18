@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:keep/base/public.dart';
 
 class SportPage extends StatefulWidget {
   SportPage({Key key}) : super(key: key);
@@ -8,58 +9,132 @@ class SportPage extends StatefulWidget {
 }
 
 class _SportPageState extends State<SportPage> {
-//热门活动
-  _hotActivity() {
-    List _activities = [
-      {'title': 'Keep 马拉松 | 跑过暑假', 'num': '37071'},
-      {'title': 'Keep 马拉松 | 跑过暑假', 'num': '37071'},
-      {'title': 'Keep 马拉松 | 跑过暑假', 'num': '37071'},
-      {'title': 'Keep 马拉松 | 跑过暑假', 'num': '37071'}
-    ];
-    return SafeArea(
-      child: GridView.count(
-          crossAxisCount: 2,
-          childAspectRatio: 197 / 154,
-          crossAxisSpacing: ScreenUtil().setWidth(16),
-          mainAxisSpacing: ScreenUtil().setHeight(40),
-          children: _activities.map((v) {
-            int _idx = _activities.indexOf(v);
-            double _leftPadding = ScreenUtil().setWidth(40);
-            double _rightPadding = 0;
-            var img =
-                'imgs/explore_hot_activity_0' + (_idx + 1).toString() + '.png';
-            if ((_idx % 2).isOdd) {
-              _rightPadding = _leftPadding;
-              _leftPadding = 0;
-            }
-            return Container(
-              color: Colors.orange,
-              padding: EdgeInsets.fromLTRB(_leftPadding, 0, _rightPadding, 0),
-              child: Column(
-                children: <Widget>[
-                  ClipRRect(
-                    child: Image(image: AssetImage(img)),
-                    borderRadius: BorderRadius.circular(3),
+  @override
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: DefaultTabController(
+        length: 5,
+        child: NestedScrollView(
+          headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
+            return <Widget>[
+              SliverAppBar(
+                backgroundColor: Colors.orange,
+                leading: Center(
+                  child: Text(
+                    '搜索',
+                    style: TextStyle(fontSize: 20, color: Colors.black),
                   ),
-                  Text(v['title'], style: TextStyle())
+                ),
+                expandedHeight: 0.0,
+                floating: false,
+                snap: false,
+                pinned: false,
+                actions: <Widget>[
+                  Container(
+                    width: 35,
+                    height: 35,
+                    child: IconButton(
+                      icon: Image.asset('imgs/sport_nav_right_kxwy.png'),
+                      onPressed: () {
+                        Toast.show('k星物语');
+                      },
+                    ),
+                  ),
+                  SizedBox(width: 10),
+                  Container(
+                    width: 35,
+                    height: 35,
+                    child: IconButton(
+                      icon: Image.asset('imgs/sport_nav_right_wristband.png'),
+                      onPressed: () {
+                        Toast.show('keep手环');
+                      },
+                    ),
+                  ),
+                  Container(
+                    width: 35,
+                    height: 35,
+                    child: IconButton(
+                      icon: Image.asset('imgs/sport_nav_right_search.png'),
+                      onPressed: () {
+                        Toast.show('搜索');
+                      },
+                    ),
+                  )
                 ],
               ),
-            );
-          }).toList()),
+              SliverPersistentHeader(
+                delegate: _SliverAppBarDelegate(
+                  _tabBar(),
+                ),
+                pinned: true,
+              ),
+              SliverOverlapAbsorber(
+                handle:
+                    NestedScrollView.sliverOverlapAbsorberHandleFor(context),
+              ),
+            ];
+          },
+          body: TabBarView(
+            children: <Widget>[
+              Text('data1'),
+              Text('data2'),
+              Text('data1'),
+              Text('data2'),
+              Text('data1'),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+Widget _tabBar() {
+  return TabBar(
+    isScrollable: true,
+    labelColor: Z6Color.darkGray,
+    labelStyle: TextStyle(
+      fontSize: ScreenUtil().setSp(28),
+    ),
+    unselectedLabelColor: Z6Color.kgray,
+    indicatorColor: Z6Color.deep_kgray,
+    indicatorSize: TabBarIndicatorSize.label,
+    indicatorWeight: 2,
+    indicatorPadding: EdgeInsets.fromLTRB(8, 0, 8, 5),
+    tabs: [
+      Tab(text: '现在开始'),
+      Tab(text: '跑步'),
+      Tab(text: '行走'),
+      Tab(text: '智能硬件'),
+      Tab(text: '瑜伽'),
+    ],
+  );
+}
+
+class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
+  _SliverAppBarDelegate(this._tabBar);
+
+  final TabBar _tabBar;
+
+  @override
+  double get minExtent => _tabBar.preferredSize.height;
+  @override
+  double get maxExtent => _tabBar.preferredSize.height;
+
+  @override
+  Widget build(
+      BuildContext context, double shrinkOffset, bool overlapsContent) {
+    return Container(
+      color: Colors.white,
+      padding: EdgeInsets.symmetric(horizontal: 15),
+      child: _tabBar,
     );
   }
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Title'),
-      ),
-      body: Container(
-        padding: EdgeInsets.all(10),
-        color: Colors.white,
-        child: _hotActivity(),
-      ),
-    );
+  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
+    return false;
   }
 }

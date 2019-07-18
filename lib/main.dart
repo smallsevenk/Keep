@@ -4,8 +4,6 @@ import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:keep/base/tabs.dart';
 
-import 'base/route.dart';
-
 void main() {
   runApp(Keep());
 
@@ -14,6 +12,14 @@ void main() {
         SystemUiOverlayStyle(statusBarColor: Colors.transparent);
     SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
   }
+  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+  //   systemNavigationBarColor: Color(0xFF000000),
+  //   systemNavigationBarDividerColor: null,
+  //   statusBarColor: null,
+  //   systemNavigationBarIconBrightness: Brightness.light,
+  //   statusBarIconBrightness: Brightness.dark,
+  //   statusBarBrightness: Brightness.light,
+  // ));
 }
 
 final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();

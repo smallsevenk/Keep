@@ -206,10 +206,9 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
         children: _classCategories.map((title) {
           return Container(
             decoration: BoxDecoration(
-                color: Z6Color.bg_gray,
+                color: Color(0xfff6f6f6),
                 borderRadius: BorderRadius.all(
                     Radius.circular(ScreenUtil().setWidth(24)))),
-            height: ScreenUtil().setHeight(48),
 
             // alignment: Alignment.centerLeft,
             padding: EdgeInsets.fromLTRB(
@@ -350,7 +349,7 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
     return classInfoList.map((v) {
       List plans = v['plans'];
       return Container(
-        height: ScreenUtil().setHeight(770),
+        height: 385,
         padding: EdgeInsets.fromLTRB(ScreenUtil().setWidth(16), 0,
             ScreenUtil().setWidth(16), ScreenUtil().setWidth(16)),
         child: Container(
@@ -397,7 +396,7 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
                 ],
               ),
               Container(
-                height: ScreenUtil().setHeight(520),
+                height: 260,
                 padding: EdgeInsets.fromLTRB(ScreenUtil().setWidth(20), 0,
                     ScreenUtil().setWidth(20), ScreenUtil().setWidth(20)),
                 child: Container(
@@ -406,6 +405,7 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
                       color: Z6Color.white,
                       borderRadius: BorderRadius.circular(5)),
                   child: ListView(
+                      physics: NeverScrollableScrollPhysics(),
                       children: ListTile.divideTiles(
                               context: context, tiles: _planListTiles(plans))
                           .toList()),
@@ -421,8 +421,6 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
   _planListTiles(List plan) {
     return plan.map((plan) {
       return Container(
-        // height: 88,
-        // color: Colors.red,
         child: ListTile(
           leading: Container(
             width: ScreenUtil().setWidth(100),
@@ -461,6 +459,13 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
     }
   }
 
+  _grayGap() {
+    return Container(
+      height: ScreenUtil().setHeight(22),
+      color: Z6Color.bg_gray,
+    );
+  }
+
   Widget _refreshView() {
     return Column(
       children: <Widget>[
@@ -478,35 +483,28 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
             SizedBox(height: ScreenUtil().setHeight(40)),
           ],
         ),
-        Container(
-          height: ScreenUtil().setHeight(22),
-          color: Z6Color.bg_gray,
-        ),
+        _grayGap(),
         //第二栏
         Column(children: <Widget>[
           _sectionView('热门课程分类', true),
-          _hotClassCategory(),
+          Container(
+            child: _hotClassCategory(),
+          ),
           SizedBox(height: ScreenUtil().setHeight(40)),
         ]),
-        Container(
-          height: ScreenUtil().setHeight(22),
-          color: Z6Color.bg_gray,
-        ),
-        //第三栏
+        _grayGap(),
+        //第��栏
         Column(
           children: <Widget>[
             _sectionView('全站热门活动', true),
             Container(
-              height: ScreenUtil().setHeight(510),
+              height: 255,
               child: _hotActivity(),
             ),
             SizedBox(height: ScreenUtil().setHeight(40)),
-            Container(
-              height: ScreenUtil().setHeight(22),
-              color: Z6Color.bg_gray,
-            ),
           ],
         ),
+        _grayGap(),
         //��四栏
         Column(
           children: <Widget>[
@@ -514,15 +512,12 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
             Container(
               padding: EdgeInsets.fromLTRB(
                   ScreenUtil().setWidth(16), 0, ScreenUtil().setWidth(16), 0),
-              height: ScreenUtil().setHeight(310),
+              height: 155,
               child: _funExplore(),
-            ),
-            Container(
-              height: ScreenUtil().setHeight(22),
-              color: Z6Color.bg_gray,
             ),
           ],
         ),
+        _grayGap(),
         //第五栏
         Column(
           children: <Widget>[
