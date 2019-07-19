@@ -22,8 +22,11 @@ class _SportPageState extends State<SportPage> {
                 backgroundColor: Colors.orange,
                 leading: Center(
                   child: Text(
-                    '搜索',
-                    style: TextStyle(fontSize: 20, color: Colors.black),
+                    '运动',
+                    style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.black,
+                        fontWeight: FontWeight.w500),
                   ),
                 ),
                 expandedHeight: 0.0,
@@ -78,7 +81,10 @@ class _SportPageState extends State<SportPage> {
           },
           body: TabBarView(
             children: <Widget>[
-              Text('data1'),
+              Container(
+                color: Colors.white,
+                child: _body(),
+              ),
               Text('data2'),
               Text('data1'),
               Text('data2'),
@@ -91,13 +97,83 @@ class _SportPageState extends State<SportPage> {
   }
 }
 
+_body() {
+  return Column(
+    children: <Widget>[
+      Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              SizedBox(
+                width: 16,
+                height: 44,
+              ),
+              Text(
+                '下午好，',
+                style: TextStyle(color: Z6Color.light_kgray, fontSize: 12),
+              ),
+              Text(
+                '淡然Oooooooooooooo',
+                style: TextStyle(color: Z6Color.light_kgray, fontSize: 14),
+              ),
+            ],
+          ),
+          Container(
+            padding: EdgeInsets.fromLTRB(18, 10, 0, 16),
+            child: Row(
+              children: <Widget>[
+                Image(
+                  height: 18,
+                  image: AssetImage('imgs/sport_set_goals.png'),
+                  fit: BoxFit.fill,
+                ),
+                SizedBox(
+                  width: 12,
+                ),
+                Text(
+                  '订个目标 ，开始Keep!',
+                  style: TextStyle(
+                      color: Z6Color.deep_kgray,
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600),
+                ),
+              ],
+            ),
+          ),
+          Divider(
+            height: 1,
+          ),
+          ListTile(
+              title: Text(
+                '已累计运动1862分钟',
+                style: TextStyle(fontSize: 14),
+              ),
+              trailing: Container(
+                width: ScreenUtil().setHeight(17),
+                height: ScreenUtil().setHeight(30),
+                child: Image(
+                  image: AssetImage('imgs/comm_detail.png'),
+                ),
+              ))
+        ],
+      ),
+      _grayGap(),
+    ],
+  );
+}
+
+_grayGap() {
+  return Container(
+    height: ScreenUtil().setHeight(22),
+    color: Z6Color.bg_gray,
+  );
+}
+
 Widget _tabBar() {
   return TabBar(
     isScrollable: true,
     labelColor: Z6Color.darkGray,
-    labelStyle: TextStyle(
-      fontSize: ScreenUtil().setSp(28),
-    ),
+    labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
     unselectedLabelColor: Z6Color.kgray,
     indicatorColor: Z6Color.deep_kgray,
     indicatorSize: TabBarIndicatorSize.label,

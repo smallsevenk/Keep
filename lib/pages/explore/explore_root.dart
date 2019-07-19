@@ -62,10 +62,18 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
   Widget _tabBar() {
     return TabBar(
       isScrollable: true,
+      // labelColor: Z6Color.darkGray,
+      // labelStyle: TextStyle(
+      //   fontSize: ScreenUtil().setSp(28),
+      // ),
+      // unselectedLabelColor: Z6Color.kgray,
+      // indicatorColor: Z6Color.deep_kgray,
+      // indicatorSize: TabBarIndicatorSize.label,
+      // indicatorWeight: 2,
+      // indicatorPadding: EdgeInsets.fromLTRB(8, 0, 8, 5),
+
       labelColor: Z6Color.darkGray,
-      labelStyle: TextStyle(
-        fontSize: ScreenUtil().setSp(28),
-      ),
+      labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
       unselectedLabelColor: Z6Color.kgray,
       indicatorColor: Z6Color.deep_kgray,
       indicatorSize: TabBarIndicatorSize.label,
