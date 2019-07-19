@@ -214,8 +214,3 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
     return false;
   }
 }
-
-cd /Users/zick/zwork/code/flutter/keep/ &&  
-git add . && 
-git commit -m 'sport' && 
-git push origin master
