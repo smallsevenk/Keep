@@ -131,7 +131,7 @@ _body() {
                   width: 12,
                 ),
                 Text(
-                  '订个目标 ，开始Keep!',
+                  '订个目标 ，开始Keep! ',
                   style: TextStyle(
                       color: Z6Color.deep_kgray,
                       fontSize: 18,
@@ -214,3 +214,8 @@ class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
     return false;
   }
 }
+
+cd /Users/zick/zwork/code/flutter/keep/ &&  
+git add . && 
+git commit -m 'sport' && 
+git push origin master
