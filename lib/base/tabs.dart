@@ -9,12 +9,14 @@ import '../pages/me/me_root.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class Tabs extends StatefulWidget {
+  // var tabIndex = 2;
+  // Tabs(this.tabIndex);
   @override
   State<StatefulWidget> createState() => TabsState();
 }
 
 class TabsState extends State<Tabs> {
-  int _tabIndex = 2;
+  int _tabIndex = 3;
   bool isFinishSetup = false;
   List<Image> _tabImages = [
     Image.asset('imgs/tabs_0_0.png'),

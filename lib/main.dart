@@ -6,12 +6,12 @@ import 'package:keep/base/tabs.dart';
 
 void main() {
   runApp(Keep());
-
-  if (Platform.isAndroid) {
-    SystemUiOverlayStyle systemUiOverlayStyle =
-        SystemUiOverlayStyle(statusBarColor: Colors.transparent);
-    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
-  }
+  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
+  // if (Platform.isAndroid) {
+  //   SystemUiOverlayStyle systemUiOverlayStyle =
+  //       SystemUiOverlayStyle(statusBarColor: Colors.transparent);
+  //   SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  // }
   // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
   //   systemNavigationBarColor: Color(0xFF000000),
   //   systemNavigationBarDividerColor: null,

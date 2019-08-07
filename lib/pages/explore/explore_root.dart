@@ -593,11 +593,18 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return <Widget>[
           SliverAppBar(
+            centerTitle: false,
+            brightness: Brightness.light,
+            backgroundColor: Colors.white,
             expandedHeight: 0.0,
             floating: false,
             snap: false,
             pinned: false,
-            title: Text('搜索'),
+            title: Text('搜索',
+                style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.black,
+                    fontWeight: FontWeight.w500)),
           ),
           SliverPersistentHeader(
             delegate: _SliverAppBarDelegate(
