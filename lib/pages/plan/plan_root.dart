@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:keep/base/public.dart';
+import 'package:keep/pages/plan/plan_data.dart';
+import 'package:keep/pages/sport/sport_data.dart';
 
 class PlanPage extends StatefulWidget {
   PlanPage({Key key}) : super(key: key);
@@ -61,7 +63,9 @@ class _PlanPageState extends State<PlanPage> {
         body: ListView(
           children: <Widget>[
             _suitInprogress(),
-            // _grayGap(),
+            _grayGap(),
+            _trainContent(),
+            _grayGap()
           ],
         ),
       ),
@@ -253,6 +257,175 @@ class _PlanPageState extends State<PlanPage> {
     }
   }
 
+  String _getVideoTime(seconds) {
+    seconds = 80.0;
+    int min = seconds ~/ 60;
+    double sec = seconds % 60;
+    int s = sec.toInt();
+    return '$min:$s';
+  }
+
+  //训练内��������������������������������������
+  _trainContent() {
+    Map task = planData['data']['sections'][0]['suit']['days'][0];
+    return Center(
+      child: Container(
+        width: Screen.width - 20,
+        decoration: BoxDecoration(
+            color: Colors.white, borderRadius: BorderRadius.circular(5)),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            SizedBox(height: 20),
+            Row(
+              children: <Widget>[
+                SizedBox(width: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      '今日训练',
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.left,
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      '今天是计划的第 7 天，你的训练任务已完成 7 / 30 天',
+                      style:
+                          TextStyle(fontSize: 12, color: Z6Color.light_kgray),
+                      textAlign: TextAlign.left,
+                    )
+                  ],
+                )
+              ],
+            ),
+            SizedBox(height: 25),
+            _teamCell(0),
+            _teamCell(1),
+            SizedBox(height: 15),
+            Divider(
+              height: 1,
+              indent: 20,
+              endIndent: 20,
+            ),
+            SizedBox(height: 15),
+            Row(
+              children: <Widget>[
+                SizedBox(width: 20),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: <Widget>[
+                    Text(
+                      task['suitTip']['subTitle'],
+                      style:
+                          TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.left,
+                    ),
+                    SizedBox(height: 10),
+                    Row(
+                      children: <Widget>[
+                        Container(
+                          width: 120,
+                          height: 60,
+                          decoration: BoxDecoration(
+                              borderRadius: BorderRadius.circular(3),
+                              image: DecorationImage(
+                                  image: NetworkImage(task['suitTip']['cover']),
+                                  fit: BoxFit.cover)),
+                        ),
+                        SizedBox(width: 10),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: <Widget>[
+                            Text(
+                              '有没有安全又有效的减肥药',
+                              style: TextStyle(fontSize: 16),
+                            ),
+                            SizedBox(height: 25),
+                            Text(
+                              _getVideoTime(80),
+                              style: TextStyle(
+                                  fontSize: 12, color: Z6Color.light_kgray),
+                            )
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(height: 10),
+                  ],
+                )
+              ],
+            ),
+          ],
+        ),
+      ),
+    );
+  }
+
+  _teamCell(idx) {
+    List task = planData['data']['sections'][0]['suit']['days'][0]['tasks'][0]
+        ['todoList'];
+    Map info = task[idx];
+    return InkWell(
+      onTap: () {
+        setState(() {
+          String flag = info['flag'];
+          info['flag'] = flag == '1' ? '0' : '1';
+        });
+      },
+      child: Container(
+        padding: EdgeInsets.fromLTRB(20, 0, 20, 5),
+        height: 80,
+        child: Container(
+          decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(3),
+              image: DecorationImage(
+                  image: NetworkImage(info['picture']), fit: BoxFit.cover)),
+          child: Row(
+            children: <Widget>[
+              SizedBox(
+                width: 20,
+                height: 60,
+              ),
+              Container(
+                width: 20,
+                height: 20,
+                child: Image.asset('imgs/sport_check_${info['flag']}.png'),
+              ),
+              SizedBox(width: 20),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(height: 10),
+                  Container(
+                    padding: EdgeInsets.all(2),
+                    decoration: BoxDecoration(
+                        color: Color(0xffe9d399),
+                        borderRadius: BorderRadius.circular(3)),
+                    child: Text(
+                      '会员精讲',
+                      style: TextStyle(fontSize: 8),
+                    ),
+                  ),
+                  Text(
+                    info['name'],
+                    style: TextStyle(color: Colors.white, fontSize: 18),
+                  ),
+                  Text(
+                    '${info['duration']}分钟',
+                    style: TextStyle(color: Colors.white, fontSize: 10),
+                  ),
+                ],
+              )
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
   // _sectionView(title, bool showDetail) {
   //   return InkWell(
   //     onTap: () {},
@@ -296,10 +469,10 @@ class _PlanPageState extends State<PlanPage> {
   //   );
   // }
 
-  // _grayGap() {
-  //   return Container(
-  //     height: ScreenUtil().setHeight(22),
-  //     color: Z6Color.bg_gray,
-  //   );
-  // }
+  _grayGap() {
+    return Container(
+      height: 11,
+      color: Z6Color.bg_gray,
+    );
+  }
 }

@@ -44,6 +44,7 @@ Map planData = {
 						"title": "完成 2 个训练",
 						"coachGuide": null,
 						"todoList": [{
+              "flag": "0",
 							"picture": "https://static1.keepcdn.com/cms_static/picture/2019/5/30/1559183801139_SElJVCVFNyU4OCU4.png",
 							"id": "5b5fdeaca29e345423c62360",
 							"type": "workout",
@@ -57,6 +58,7 @@ Map planData = {
 							"canBeReplaced": false,
 							"category": null
 						}, {
+              "flag": "0",
 							"picture": "https://static1.keepcdn.com/2018/12/18/19/1545131348236_750x700.jpg",
 							"id": "5cc02282e38108073fc39609",
 							"type": "workout",
