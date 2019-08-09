@@ -6,6 +6,8 @@ class Z6Color {
   static Color kgray = Color(0xff999999);
   static Color light_kgray = Color(0xff9a9a9a);
   static Color bg_gray = Color(0xfffafafa);
+  static Color black_3 = Color(0xff333333);
+  static Color vip_color = Color(0xffefd297);
 
   static Color primary = Color(0xff564f5f);
   static Color secondary = Color(0xFF51DEC6);

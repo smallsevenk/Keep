@@ -149,6 +149,7 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
 
   Widget _gridView() {
     return StaggeredGridView.countBuilder(
+        padding: EdgeInsets.all(0),
         itemCount: posts.length,
         primary: false,
         crossAxisCount: 4,
