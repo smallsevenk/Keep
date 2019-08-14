@@ -357,7 +357,7 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
     return classInfoList.map((v) {
       List plans = v['plans'];
       return Container(
-        height: 385,
+        height: 400,
         padding: EdgeInsets.fromLTRB(ScreenUtil().setWidth(16), 0,
             ScreenUtil().setWidth(16), ScreenUtil().setWidth(16)),
         child: Container(

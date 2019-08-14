@@ -219,7 +219,7 @@ class _SportPageState extends State<SportPage> {
               },
             );
           }).toList(),
-          height: 260.0,
+          height: 280.0,
         ),
         Container(
             width: Screen.width,
