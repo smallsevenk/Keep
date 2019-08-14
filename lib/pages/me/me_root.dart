@@ -15,12 +15,36 @@ class _MePageState extends State<MePage> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return Container(
+      color: Z6Color.bg_gray,
       padding: EdgeInsets.all(0),
       child: ListView(
         padding: EdgeInsets.all(0),
-        children: <Widget>[_header()],
+        children: <Widget>[
+          _header(),
+          _subHeader(),
+          Container(
+            color: Z6Color.bg_gray,
+            padding: EdgeInsets.only(left: 10, right: 10),
+            child: Column(
+              children: <Widget>[
+                _grayGap(),
+                _keepVip(),
+                _grayGap(),
+                _mySportData(),
+                _grayGap(),
+                _myBodyData(),
+                _grayGap(),
+                _myList(),
+              ],
+            ),
+          )
+        ],
       ),
     );
+  }
+
+  _grayGap() {
+    return Container(color: Z6Color.bg_gray, height: 10, width: Screen.width);
   }
 
   _header() {
@@ -150,6 +174,281 @@ class _MePageState extends State<MePage> {
           SizedBox(height: 20),
         ],
       ),
+    );
+  }
+
+  _subHeader() {
+    List headEntry = meData['data']['headEntry'];
+    return Container(
+      color: Colors.white,
+      child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          children: headEntry.map((v) {
+            return Row(
+              children: <Widget>[
+                SizedBox(height: 60),
+                Container(
+                  width: 23,
+                  height: 23,
+                  child: CachedNetworkImage(imageUrl: v['icon']),
+                ),
+                SizedBox(width: 10),
+                Text(
+                  v['name'],
+                  style: TextStyle(fontSize: 12),
+                )
+              ],
+            );
+          }).toList()),
+    );
+  }
+
+  _keepVip() {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(8)),
+      child: Row(children: <Widget>[
+        SizedBox(width: 10),
+        Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Text('Keep 会员',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold)),
+            SizedBox(height: 13),
+            Text(
+              '完成任务，即可获得现金奖励!',
+              style: TextStyle(color: Z6Color.gray, fontSize: 12),
+            ),
+          ],
+        ),
+        Expanded(
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.end,
+            children: <Widget>[
+              Container(
+                height: 80,
+                child: Image(
+                  image: AssetImage('imgs/me_vip_bg.png'),
+                ),
+              )
+            ],
+          ),
+        ),
+      ]),
+    );
+  }
+
+  _mySportData() {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(8)),
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              SizedBox(width: 10, height: 50),
+              Text(
+                '我的运动数据',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Container(
+                      width: 12,
+                      child: Image(
+                          image: AssetImage('imgs/me_my_sport_data_gth.png')),
+                    ),
+                    SizedBox(width: 5),
+                    Text(
+                      '有自动生成的数据',
+                      style: TextStyle(fontSize: 12, color: Z6Color.black_3),
+                    ),
+                    SizedBox(width: 10),
+                    Container(
+                      height: 12,
+                      child: Image(
+                        image: AssetImage('imgs/comm_detail.png'),
+                      ),
+                    ),
+                    SizedBox(width: 10)
+                  ],
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              SizedBox(
+                width: 10,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text('总运动'),
+                      Text(' (分钟)',
+                          style: TextStyle(color: Z6Color.gray, fontSize: 12))
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Text('494', style: TextStyle(fontSize: 22)),
+                  SizedBox(height: 20),
+                ],
+              ),
+              SizedBox(width: 30),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text('本周消耗'),
+                      Text(' (千卡)',
+                          style: TextStyle(color: Z6Color.gray, fontSize: 12))
+                    ],
+                  ),
+                  SizedBox(height: 10),
+                  Text('1494', style: TextStyle(fontSize: 22)),
+                  SizedBox(height: 20),
+                ],
+              )
+            ],
+          )
+        ],
+      ),
+    );
+  }
+
+  _myBodyData() {
+    return Container(
+      decoration: BoxDecoration(
+          color: Colors.white, borderRadius: BorderRadius.circular(8)),
+      child: Column(
+        children: <Widget>[
+          Row(
+            children: <Widget>[
+              SizedBox(width: 10, height: 50),
+              Text(
+                '我的身体数据',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(width: 10),
+              Container(
+                width: 20,
+                child: Image(image: AssetImage('imgs/me_my_body_data.png')),
+              ),
+              Expanded(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    Container(
+                      height: 12,
+                      child: Image(
+                        image: AssetImage('imgs/comm_detail.png'),
+                      ),
+                    ),
+                    SizedBox(width: 10)
+                  ],
+                ),
+              )
+            ],
+          ),
+          Row(
+            children: <Widget>[
+              SizedBox(
+                width: 10,
+                height: 50,
+              ),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        '178.0',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                      Text(' 身高 cm',
+                          style: TextStyle(color: Z6Color.gray, fontSize: 12))
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(width: 30),
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Row(
+                    children: <Widget>[
+                      Text(
+                        '66.0',
+                        style: TextStyle(fontSize: 24),
+                      ),
+                      Text(' 体重 kg',
+                          style: TextStyle(color: Z6Color.gray, fontSize: 12))
+                    ],
+                  ),
+                ],
+              )
+            ],
+          ),
+          SizedBox(height: 10)
+        ],
+      ),
+    );
+  }
+
+  _myList() {
+    List list = meData['data']['tabs'][0];
+    return Column(
+      children: list.map((v) {
+        return InkWell(
+            onTap: () {
+              Toast.show(v['name']);
+            },
+            child: Column(
+              children: <Widget>[
+                Container(
+                  decoration: BoxDecoration(
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(8)),
+                  child: Row(
+                    children: <Widget>[
+                      SizedBox(
+                        width: 10,
+                        height: 50,
+                      ),
+                      Container(
+                        width: 25,
+                        child: CachedNetworkImage(
+                          imageUrl: v['icon'],
+                        ),
+                      ),
+                      SizedBox(width: 20),
+                      Text(v['name'], style: TextStyle(fontSize: 16)),
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: <Widget>[
+                            Container(
+                              height: 12,
+                              child: Image(
+                                image: AssetImage('imgs/comm_detail.png'),
+                              ),
+                            ),
+                            SizedBox(width: 10)
+                          ],
+                        ),
+                      )
+                    ],
+                  ),
+                ),
+                _grayGap(),
+              ],
+            ));
+      }).toList(),
     );
   }
 }
