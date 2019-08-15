@@ -16,7 +16,7 @@ class Tabs extends StatefulWidget {
 }
 
 class TabsState extends State<Tabs> {
-  int _tabIndex = 4;
+  int _tabIndex = 0;
   bool isFinishSetup = false;
   List<Image> _tabImages = [
     Image.asset('imgs/tabs_0_0.png'),
@@ -74,13 +74,7 @@ class TabsState extends State<Tabs> {
         backgroundColor: Colors.white,
         activeColor: Z6Color.deep_kgray,
         inactiveColor: Z6Color.kgray,
-        items: <BottomNavigationBarItem>[
-          BottomNavigationBarItem(icon: getTabIcon(0), title: Text('社区')),
-          BottomNavigationBarItem(icon: getTabIcon(1), title: Text('探索')),
-          BottomNavigationBarItem(icon: getTabIcon(2), title: Text('运动')),
-          BottomNavigationBarItem(icon: getTabIcon(3), title: Text('计划')),
-          BottomNavigationBarItem(icon: getTabIcon(4), title: Text('我')),
-        ],
+        items: _bottomNavigationBarItem(),
         currentIndex: _tabIndex,
         onTap: (index) {
           setState(() {
@@ -89,6 +83,19 @@ class TabsState extends State<Tabs> {
         },
       ),
     );
+  }
+
+  List<BottomNavigationBarItem> _bottomNavigationBarItem() {
+    List titles = ['社区', '探索', '运动', '计划', '我'];
+    return titles.map((v) {
+      int idx = titles.indexOf(v);
+      return BottomNavigationBarItem(
+          icon: Container(
+            height: 17,
+            child: getTabIcon(idx),
+          ),
+          title: Text(v));
+    }).toList();
   }
 
   Image getTabIcon(int index) {
