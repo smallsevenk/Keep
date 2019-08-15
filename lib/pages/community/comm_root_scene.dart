@@ -25,22 +25,61 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
 
   NestedScrollView _supCtr;
 
+  Widget buildTextField() {
+    return Container(
+      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
+      alignment: Alignment.centerLeft,
+      height: 30.0,
+      decoration: new BoxDecoration(
+          color: Color(0xfff9f9f9),
+          // border: new Border.all(color: Z6Color.bg_gray, width: 0.5),
+          borderRadius: new BorderRadius.circular(5.0)),
+      child: Row(
+        children: <Widget>[
+          IconButton(
+            padding: EdgeInsets.all(0),
+            color: Z6Color.black_3,
+            iconSize: 24,
+            icon: Icon(Icons.search),
+            onPressed: () {},
+          ),
+          Expanded(
+            child: TextField(
+              decoration: InputDecoration.collapsed(
+                hintText: '大家都在搜超DD',
+              ),
+            ),
+          )
+        ],
+      ),
+    );
+  }
+
   NestedScrollView _getSuperWidget() {
     return NestedScrollView(
       headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
         return <Widget>[
           SliverAppBar(
+            automaticallyImplyLeading: false,
             brightness: Brightness.light,
             backgroundColor: Colors.white,
             expandedHeight: 0.0,
             floating: false,
             snap: false,
             pinned: false,
-            title: Text('Keep',
-                style: TextStyle(
-                    fontSize: 20,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500)),
+            leading: null,
+            centerTitle: false,
+            title: buildTextField(),
+            actions: <Widget>[
+              IconButton(
+                icon: new Icon(Icons.person_add),
+                color: Colors.grey,
+                iconSize: 18.0,
+                onPressed: () {
+                  Toast.show('添加好友');
+                },
+              ),
+            ],
           ),
           SliverPersistentHeader(
             delegate: _SliverAppBarDelegate(
