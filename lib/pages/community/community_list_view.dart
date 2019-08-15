@@ -107,7 +107,7 @@ class CommunityListViewState extends State<CommunityListView>
   }
 
   Future<void> _fetchData() async {
-    Hot hot = await Z6Srv.queryHot(_position.toString());
+    Hot hot = await Z6Srv.queryHot(_position.toString(), '');
     setState(() {
       if (_position == 0) {
         posts.clear();

@@ -22,8 +22,10 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
       new GlobalKey<RefreshFooterState>();
 
   bool _loadMore = true;
+  bool _showCancel = false;
 
   NestedScrollView _supCtr;
+  final controller = TextEditingController();
 
   Widget buildTextField() {
     return Container(
@@ -36,20 +38,50 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
           borderRadius: new BorderRadius.circular(5.0)),
       child: Row(
         children: <Widget>[
-          IconButton(
-            padding: EdgeInsets.all(0),
-            color: Z6Color.black_3,
-            iconSize: 24,
-            icon: Icon(Icons.search),
-            onPressed: () {},
+          Container(
+            width: 38,
+            child: IconButton(
+              padding: EdgeInsets.all(0),
+              color: Z6Color.black_3,
+              iconSize: 24,
+              icon: Icon(Icons.search),
+              onPressed: () {},
+            ),
           ),
           Expanded(
             child: TextField(
+              style: TextStyle(fontSize: 14),
+              controller: controller,
+              cursorColor: Z6Color.gray,
               decoration: InputDecoration.collapsed(
                 hintText: '大家都在搜超DD',
               ),
+              textInputAction: TextInputAction.search,
+              onTap: () {
+                setState(() {
+                  _showCancel = true;
+                });
+              },
+              onSubmitted: (v) {
+                Toast.show('搜个毛线啊，没有接口');
+                _showCancel = false;
+              },
             ),
-          )
+          ),
+          _showCancel
+              ? Container(
+                  width: 28,
+                  child: IconButton(
+                    iconSize: 20,
+                    color: Z6Color.gray,
+                    padding: EdgeInsets.all(0),
+                    icon: Icon(Icons.cancel),
+                    onPressed: () {
+                      controller.clear();
+                    },
+                  ),
+                )
+              : Text('')
         ],
       ),
     );
@@ -71,14 +103,34 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
             centerTitle: false,
             title: buildTextField(),
             actions: <Widget>[
-              IconButton(
-                icon: new Icon(Icons.person_add),
-                color: Colors.grey,
-                iconSize: 18.0,
-                onPressed: () {
-                  Toast.show('添加好友');
-                },
-              ),
+              _showCancel
+                  ? Container(
+                      width: 40,
+                      height: 20,
+                      child: FlatButton(
+                        padding: EdgeInsets.all(0),
+                        onPressed: () {
+                          controller.clear();
+                          FocusScope.of(context).requestFocus(FocusNode());
+                          setState(() {
+                            _showCancel = false;
+                          });
+                        },
+                        child: Text(
+                          '取消',
+                          style: TextStyle(color: Colors.green),
+                        ),
+                      ),
+                    )
+                  : IconButton(
+                      icon: new Icon(Icons.person_add),
+                      color: Colors.grey,
+                      iconSize: 18.0,
+                      onPressed: () {
+                        Toast.show('添加好友');
+                      },
+                    ),
+              _showCancel ? SizedBox(width: 10) : Text('')
             ],
           ),
           SliverPersistentHeader(
@@ -118,7 +170,7 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
   }
 
   Future<void> _fetchData() async {
-    Hot hot = await Z6Srv.queryHot(_position.toString());
+    Hot hot = await Z6Srv.queryHot(_position.toString(), '跑步');
     setState(() {
       if (_position == 0) {
         posts.clear();
@@ -251,6 +303,14 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
       body: DefaultTabController(
         length: 4,
         child: _supCtr ?? Container(),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Toast.show('点个金币啊');
+        },
+        child: Image(
+          image: AssetImage('imgs/comm_photo.png'),
+        ),
       ),
     );
   }

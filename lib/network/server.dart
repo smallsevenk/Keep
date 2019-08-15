@@ -2,7 +2,7 @@ import 'package:keep/base/public.dart';
 import 'package:keep/models/hot.dart';
 
 class Z6Srv {
-  static Future<Hot> queryHot(String position) async {
+  static Future<Hot> queryHot(String position, key) async {
     try {
       Map<String, dynamic> hotJson = await Z6HttpManager.get(Api.Hot, params: {
         "feedType": "hot",
@@ -11,7 +11,8 @@ class Z6Srv {
         "needLikeInfo": "1",
         "needRelationInfo": "1",
         "position": position ?? "0",
-        "sort": "byTime"
+        "sort": "byTime",
+        "keyword": key
       });
       return Hot.fromJson(hotJson);
     } catch (e) {
