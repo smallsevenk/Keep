@@ -1,13 +1,16 @@
 #include "AppDelegate.h"
 #include "GeneratedPluginRegistrant.h"
+#include "LMURLProtocol.h"
 
 @implementation AppDelegate
 
-- (BOOL)application:(UIApplication *)application
-    didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-  [GeneratedPluginRegistrant registerWithRegistry:self];
-  // Override point for customization after application launch.
-  return [super application:application didFinishLaunchingWithOptions:launchOptions];
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+    
+    [NSURLProtocol registerClass:LMURLProtocol.class];
+    
+    [GeneratedPluginRegistrant registerWithRegistry:self];
+  
+    return [super application:application didFinishLaunchingWithOptions:launchOptions];
 }
 
 @end

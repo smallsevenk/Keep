@@ -3,6 +3,8 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'dart:io';
 import 'package:flutter/services.dart';
 import 'package:keep/base/tabs.dart';
+import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
+import 'package:keep/base/route.dart';
 
 void main() {
   runApp(Keep());
@@ -27,6 +29,16 @@ final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
 class Keep extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    // return new MaterialApp(
+    //   routes: {
+    //     "/": (_) => new WebviewScaffold(
+    //           url: "https://www.baidu.com",
+    //           appBar: new AppBar(
+    //             title: new Text("Widget webview"),
+    //           ),
+    //         ),
+    //   },
+    // );
     return MaterialApp(
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
@@ -39,6 +51,7 @@ class Keep extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       // initialRoute: '/',
       navigatorObservers: [routeObserver],
+
       // onGenerateRoute: onGenerateRoute,
       home: Tabs(),
     );

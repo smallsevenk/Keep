@@ -6,6 +6,8 @@ import '../pages/sport/sport_root.dart';
 import '../pages/plan/plan_root.dart';
 import '../pages/me/me_root.dart';
 
+import '../pages/push_test.dart';
+
 final routes = {
   '/': (context, {arguments}) => Tabs(),
   '/community_root': (context, {arguments}) => CommunityPage(),
@@ -13,6 +15,7 @@ final routes = {
   '/sport_root': (context) => SportPage(),
   '/plan_root': (context) => PlanPage(),
   '/me_root': (context) => MePage(),
+  '/PushTestScene': (context) => PushTestScene(),
 };
 
 var onGenerateRoute = (RouteSettings settings) {

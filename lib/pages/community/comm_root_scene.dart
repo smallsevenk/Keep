@@ -127,7 +127,8 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
                       color: Colors.grey,
                       iconSize: 18.0,
                       onPressed: () {
-                        Toast.show('添加好友');
+                        Navigator.of(context).pushNamed('PushTestScene');
+                        // Toast.show('添加好友');
                       },
                     ),
               _showCancel ? SizedBox(width: 10) : Text('')
@@ -306,7 +307,7 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Toast.show('点个金币啊');
+          Toast.show('点个金币啊111111');
         },
         child: Image(
           image: AssetImage('imgs/comm_photo.png'),
