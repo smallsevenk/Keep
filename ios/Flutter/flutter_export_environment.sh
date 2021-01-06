@@ -1,8 +1,8 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
 export "FLUTTER_ROOT=/Users/zick/zwork/tools/flutter"
-export "FLUTTER_APPLICATION_PATH=/Users/zick/zwork/code/flutter/keep"
-export "FLUTTER_TARGET=/Users/zick/zwork/code/flutter/keep/lib/main.dart"
+export "FLUTTER_APPLICATION_PATH=/Users/zick/zwork/code/flutter/K"
+export "FLUTTER_TARGET=/Users/zick/zwork/code/flutter/K/lib/main.dart"
 export "FLUTTER_BUILD_DIR=build"
 export "SYMROOT=${SOURCE_ROOT}/../build/ios"
 export "OTHER_LDFLAGS=$(inherited) -framework Flutter"

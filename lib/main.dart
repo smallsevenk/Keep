@@ -1,59 +1,45 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localizations/flutter_localizations.dart';
-import 'dart:io';
 import 'package:flutter/services.dart';
-import 'package:keep/base/tabs.dart';
-import 'package:flutter_webview_plugin/flutter_webview_plugin.dart';
-import 'package:keep/base/route.dart';
 
-void main() {
-  runApp(Keep());
-  SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
-  // if (Platform.isAndroid) {
-  //   SystemUiOverlayStyle systemUiOverlayStyle =
-  //       SystemUiOverlayStyle(statusBarColor: Colors.transparent);
-  //   SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
-  // }
-  // SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-  //   systemNavigationBarColor: Color(0xFF000000),
-  //   systemNavigationBarDividerColor: null,
-  //   statusBarColor: null,
-  //   systemNavigationBarIconBrightness: Brightness.light,
-  //   statusBarIconBrightness: Brightness.dark,
-  //   statusBarBrightness: Brightness.light,
-  // ));
-}
+import 'package:framework/public.dart';
+import 'package:framework/xm_mvvm.dart/view/home.dart';
 
-final RouteObserver<PageRoute> routeObserver = RouteObserver<PageRoute>();
+import 'xm_mvvm.dart/view/tabbar.dart';
+import 'xm_mvvm.dart/view/tabbar.dart';
+import 'xm_widgets/launch.dart';
+import 'package:framework/xm_widgets/launch.dart';
 
-class Keep extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    // return new MaterialApp(
-    //   routes: {
-    //     "/": (_) => new WebviewScaffold(
-    //           url: "https://www.baidu.com",
-    //           appBar: new AppBar(
-    //             title: new Text("Widget webview"),
-    //           ),
-    //         ),
-    //   },
-    // );
-    return MaterialApp(
-      localizationsDelegates: [
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-      ],
-      supportedLocales: [
-        const Locale('zh', 'CH'),
-        const Locale('en', 'US'),
-      ],
-      debugShowCheckedModeBanner: false,
-      // initialRoute: '/',
-      navigatorObservers: [routeObserver],
+const debug = true;
 
-      // onGenerateRoute: onGenerateRoute,
-      home: Tabs(),
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
+  // while (window.physicalSize.isEmpty) {}
+  // //如果size是0，则设置回调，在回调中runApp
+  // if (window.physicalSize.isEmpty) {
+  //   window.onMetricsChanged = () async {
+  //     //在回调中，size仍然有可能是0
+  //     if (!window.physicalSize.isEmpty) {
+  //       window.onMetricsChanged = null;
+  //       await XMAppGlobal.init();
+  //       runApp(new MyApp());
+  //     }
+  //   };
+  // } else {
+  //   //如果size非0，则直接runApp
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
+      .then((_) {
+    runApp(
+      MaterialApp(
+          navigatorKey: xmNavGK,
+          title: 'XM',
+          debugShowCheckedModeBanner: false,
+          theme: ThemeData(
+            primaryColor: Colors.white,
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+          ),
+          home: XMTabbarPage()),
     );
-  }
+  });
 }
