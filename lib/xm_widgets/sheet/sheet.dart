@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:framework/public.dart';
+
+import '../../public.dart';
 
 typedef void XMSheetCloseHandler<T extends Object>({T result});
 
