@@ -29,6 +29,6 @@
 25.自适应缩放字体大小  
   
 ##Showcase  
-![image](https://github.com/smallsevenk/Keep/blob/master/screenShot/community.jpeg)
+<image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/community.jpeg" width="200">
 
 
