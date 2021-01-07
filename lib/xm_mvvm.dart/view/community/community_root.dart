@@ -143,7 +143,7 @@ class _CommunityPageState extends State<CommunityPage>
         labelColor: XMColor.darkGray,
         labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
         unselectedLabelColor: XMColor.kgray,
-        indicatorColor: XMColor.deep_kgray,
+        indicatorColor: XMColor.deepGray,
         indicatorSize: TabBarIndicatorSize.label,
         indicatorWeight: 2,
         indicatorPadding: EdgeInsets.fromLTRB(8, 0, 8, 5),
@@ -179,7 +179,7 @@ class _CommunityPageState extends State<CommunityPage>
               List imgs = entry.images ?? [];
               Author author = entry.author ?? Author();
 
-              img = imgs.length >= 1 ? imgs[0] : Api.hot_img;
+              img = imgs.length >= 1 ? imgs[0] : Api.hotImg;
               content = entry.content ?? '默认测试内容';
               avatar = author.avatar ?? Api.avatar;
               name = author.username ?? '无名';
@@ -232,6 +232,7 @@ class _CommunityPageState extends State<CommunityPage>
   }
 
   @override
+  // ignore: must_call_super
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
     return Scaffold(

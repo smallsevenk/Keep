@@ -2,12 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import 'package:framework/public.dart';
-import 'package:framework/xm_mvvm.dart/view/home.dart';
 
 import 'xm_mvvm.dart/view/tabbar.dart';
-import 'xm_mvvm.dart/view/tabbar.dart';
-import 'xm_widgets/launch.dart';
-import 'package:framework/xm_widgets/launch.dart';
 
 const debug = true;
 

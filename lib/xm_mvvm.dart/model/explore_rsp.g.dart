@@ -6,6 +6,7 @@ part of 'explore_rsp.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
+// ignore: non_constant_identifier_names
 Explore_rsp _$Explore_rspFromJson(Map<String, dynamic> json) {
   return Explore_rsp()
     ..ok = json['ok'] as bool
@@ -14,6 +15,7 @@ Explore_rsp _$Explore_rspFromJson(Map<String, dynamic> json) {
     ..text = json['text'] as String;
 }
 
+// ignore: non_constant_identifier_names
 Map<String, dynamic> _$Explore_rspToJson(Explore_rsp instance) =>
     <String, dynamic>{
       'ok': instance.ok,

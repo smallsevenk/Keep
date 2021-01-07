@@ -110,7 +110,7 @@ class _PlanPageState extends State<PlanPage> {
                           child: Text(
                             '7小时前训练',
                             style: TextStyle(
-                                color: XMColor.light_kgray, fontSize: 10),
+                                color: XMColor.lightGray, fontSize: 10),
                             textAlign: TextAlign.left,
                           ),
                         ),
@@ -194,8 +194,7 @@ class _PlanPageState extends State<PlanPage> {
                 weekday.substring(2),
                 style: TextStyle(
                     fontSize: 14,
-                    color:
-                        currDt.day == i ? Colors.black : XMColor.light_kgray),
+                    color: currDt.day == i ? Colors.black : XMColor.lightGray),
                 textAlign: TextAlign.left,
               ),
             ),
@@ -290,8 +289,7 @@ class _PlanPageState extends State<PlanPage> {
                     SizedBox(height: 10),
                     Text(
                       '今天是计划的第 7 天，你的训练任务已完成 7 / 30 天',
-                      style:
-                          TextStyle(fontSize: 12, color: XMColor.light_kgray),
+                      style: TextStyle(fontSize: 12, color: XMColor.lightGray),
                       textAlign: TextAlign.left,
                     )
                   ],
@@ -345,7 +343,7 @@ class _PlanPageState extends State<PlanPage> {
                             Text(
                               _getVideoTime(80),
                               style: TextStyle(
-                                  fontSize: 12, color: XMColor.light_kgray),
+                                  fontSize: 12, color: XMColor.lightGray),
                             )
                           ],
                         )
@@ -430,13 +428,13 @@ class _PlanPageState extends State<PlanPage> {
   //     child: Row(
   //       children: <Widget>[
   //         SizedBox(
-  //           width: ScreenUtil().setWidth(28),
-  //           height: ScreenUtil().setWidth(78),
+  //           width: xmDp(28),
+  //           height: xmDp(78),
   //         ),
   //         Text(
   //           title,
   //           style: TextStyle(
-  //               fontSize: ScreenUtil().setSp(28), color: XMColor.deep_kgray),
+  //               fontSize: ScreenUtil().setSp(28), color: XMColor.deepGray),
   //         ),
   //         Expanded(
   //           child: Row(
@@ -457,7 +455,7 @@ class _PlanPageState extends State<PlanPage> {
   //                     : Text(''),
   //               ),
   //               SizedBox(
-  //                 width: ScreenUtil().setWidth(28),
+  //                 width: xmDp(28),
   //               ),
   //             ],
   //           ),
@@ -470,7 +468,7 @@ class _PlanPageState extends State<PlanPage> {
   _grayGap() {
     return Container(
       height: 11,
-      color: XMColor.bg_gray,
+      color: XMColor.bgGray,
     );
   }
 }

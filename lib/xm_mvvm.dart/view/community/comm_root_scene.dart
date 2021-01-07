@@ -17,68 +17,56 @@ class KeepCommRootScene extends StatefulWidget {
 }
 
 class KeepCommRootSceneState extends State<KeepCommRootScene> {
-  bool _loadMore = true;
   bool _showCancel = false;
 
   NestedScrollView _supCtr;
-  final controller = TextEditingController();
+  TextEditingController searchCtr = TextEditingController();
 
-  Widget buildTextField() {
+  _searchBarWid() {
     return Container(
-      padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
-      alignment: Alignment.centerLeft,
-      height: 30.0,
-      decoration: new BoxDecoration(
-          color: Color(0xfff9f9f9),
-          // border: new Border.all(color: XMColor.bg_gray, width: 0.5),
-          borderRadius: new BorderRadius.circular(5.0)),
-      child: Row(
-        children: <Widget>[
-          Container(
-            width: 38,
-            child: IconButton(
-              padding: EdgeInsets.all(0),
-              color: XMColor.black_3,
-              iconSize: 24,
-              icon: Icon(Icons.search),
-              onPressed: () {},
-            ),
-          ),
-          Expanded(
-            child: TextField(
-              style: TextStyle(fontSize: 14),
-              controller: controller,
-              cursorColor: XMColor.gray,
-              decoration: InputDecoration.collapsed(
-                hintText: '大家都在搜超DD',
-              ),
-              textInputAction: TextInputAction.search,
-              onTap: () {
-                setState(() {
-                  _showCancel = true;
-                });
-              },
-              onSubmitted: (v) {
-                Toast.show('搜个毛线啊，没有接口');
-                _showCancel = false;
-              },
-            ),
-          ),
-          _showCancel
-              ? Container(
-                  width: 28,
-                  child: IconButton(
-                    iconSize: 20,
-                    color: XMColor.gray,
-                    padding: EdgeInsets.all(0),
-                    icon: Icon(Icons.cancel),
-                    onPressed: () {
-                      controller.clear();
+      width: xmDp(972),
+      height: xmDp(90),
+      child: TextField(
+        // focusNode: focusNode,
+        controller: searchCtr, textInputAction: TextInputAction.search,
+        decoration: InputDecoration(
+            fillColor: XMColor.contentColor,
+            filled: true,
+            contentPadding: EdgeInsets.all(2),
+            hintText: '搜索',
+            hintStyle: TextStyle(color: XMColor.grayColor, fontSize: xmSp(48)),
+            prefixIcon: Image.asset('res/imgs/comm_search.png'),
+            prefixIconConstraints:
+                BoxConstraints(minWidth: xmDp(113), maxHeight: xmDp(51)),
+            suffixIcon: searchCtr.text.length > 0
+                ? GestureDetector(
+                    behavior: HitTestBehavior.opaque,
+                    onTap: () {
+                      searchCtr.text = '';
                     },
-                  ),
-                )
-              : Text('')
-        ],
+                    child: Icon(
+                      Icons.cancel,
+                      color: XMColor.grayColor,
+                    ))
+                : SizedBox(),
+            border: OutlineInputBorder(
+              borderSide: BorderSide.none,
+              borderRadius: BorderRadius.circular(xmDp(50)),
+            )),
+        onTap: () {
+          setState(() {
+            _showCancel = true;
+          });
+        },
+        onSubmitted: (v) {
+          Toast.show('搜个毛线啊，没有接口');
+          _showCancel = false;
+        },
+        style: TextStyle(color: Colors.black, fontSize: xmSp(48)),
+        maxLines: 1,
+        onChanged: (v) {
+          setState(() {});
+        },
       ),
     );
   }
@@ -97,7 +85,7 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
             pinned: false,
             leading: null,
             centerTitle: false,
-            title: buildTextField(),
+            title: _searchBarWid(),
             actions: <Widget>[
               _showCancel
                   ? Container(
@@ -106,25 +94,24 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
                       child: FlatButton(
                         padding: EdgeInsets.all(0),
                         onPressed: () {
-                          controller.clear();
+                          searchCtr.clear();
                           FocusScope.of(context).requestFocus(FocusNode());
                           setState(() {
                             _showCancel = false;
                           });
                         },
-                        child: Text(
+                        child: XMText.create(
                           '取消',
-                          style: TextStyle(color: Colors.green),
+                          color: Colors.green,
                         ),
                       ),
                     )
                   : IconButton(
                       icon: new Icon(Icons.person_add),
                       color: Colors.grey,
-                      iconSize: 18.0,
+                      iconSize: 22.0,
                       onPressed: () {
-                        Navigator.of(context).pushNamed('PushTestScene');
-                        // Toast.show('添加好友');
+                        Toast.show('添加好友');
                       },
                     ),
               _showCancel ? SizedBox(width: 10) : Text('')
@@ -148,9 +135,6 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
   int _position = 0; //表示从第几条开始取
 
   List<Entrys> posts = [];
-
-  @override
-  bool get wantKeepAlive => true;
 
   @override
   void dispose() {
@@ -186,7 +170,7 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
       labelColor: XMColor.darkGray,
       labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
       unselectedLabelColor: XMColor.kgray,
-      indicatorColor: XMColor.deep_kgray,
+      indicatorColor: XMColor.deepGray,
       indicatorSize: TabBarIndicatorSize.label,
       indicatorWeight: 2,
       indicatorPadding: EdgeInsets.fromLTRB(8, 0, 8, 5),
@@ -201,7 +185,7 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
 
   Widget _refreshView() {
     return Container(
-      color: XMColor.bg_gray,
+      color: XMColor.bgGray,
       padding: EdgeInsets.fromLTRB(margin8, margin8, margin8, 0),
       child: SafeArea(
         top: false,
@@ -233,7 +217,7 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
             List imgs = entry.images ?? [];
             Author author = entry.author ?? Author();
 
-            img = imgs.length >= 1 ? imgs[0] : Api.hot_img;
+            img = imgs.length >= 1 ? imgs[0] : Api.hotImg;
             content = entry.content ?? '默认测试内容';
             avatar = author.avatar ?? Api.avatar;
             name = author.username ?? '无名';

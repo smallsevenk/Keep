@@ -18,15 +18,14 @@ class XMColor {
   static Color lineColor = Color(0xffE6E6E6);
 
   //keep
-  static Color deep_kgray = Color(0xff564f5f);
+  static Color deepGray = Color(0xff564f5f);
   static Color kgray = Color(0xff999999);
-  static Color light_kgray = Color(0xff9a9a9a);
-  static Color bg_gray = Color(0xfffafafa);
+  static Color lightGray = Color(0xff9a9a9a);
+  static Color bgGray = Color(0xfffafafa);
   static Color black_3 = Color(0xff333333);
-  static Color vip_color = Color(0xffefd297);
+  static Color vipColor = Color(0xffefd297);
 
   static Color paper = Color(0xFFF5F5F5);
-  static Color lightGray = Color(0xFFEEEEEE);
   static Color darkGray = Color(0xFF333333);
   static Color gray = Color(0xFF888888);
 

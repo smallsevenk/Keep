@@ -29,7 +29,7 @@ class _UpdatePageState extends State<UpdatePage> {
   List<_TaskInfo> _tasks;
   List<_ItemHolder> _items;
   bool _isLoading;
-  bool _permissionReady;
+
   String _localPath;
   ReceivePort _port = ReceivePort();
 
@@ -42,7 +42,6 @@ class _UpdatePageState extends State<UpdatePage> {
     FlutterDownloader.registerCallback(downloadCallback);
 
     _isLoading = true;
-    _permissionReady = true;
 
     _prepare();
   }
@@ -273,9 +272,9 @@ class _UpdatePageState extends State<UpdatePage> {
         openFileFromNotification: true);
   }
 
-  void _cancelDownload(_TaskInfo task) async {
-    await FlutterDownloader.cancel(taskId: task.taskId);
-  }
+  // void _cancelDownload(_TaskInfo task) async {
+  //   await FlutterDownloader.cancel(taskId: task.taskId);
+  // }
 
   void _pauseDownload(_TaskInfo task) async {
     await FlutterDownloader.pause(taskId: task.taskId);
@@ -327,8 +326,6 @@ class _UpdatePageState extends State<UpdatePage> {
         }
       }
     });
-
-    // _permissionReady = await _checkPermission();
 
     _localPath = (await _findLocalPath()) + Platform.pathSeparator + 'Download';
 

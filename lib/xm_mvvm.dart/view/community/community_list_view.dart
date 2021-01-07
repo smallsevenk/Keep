@@ -59,7 +59,7 @@ class CommunityListViewState extends State<CommunityListView>
                 List imgs = entry.images ?? [];
                 Author author = entry.author ?? Author();
 
-                img = imgs.length >= 1 ? imgs[0] : Api.hot_img;
+                img = imgs.length >= 1 ? imgs[0] : Api.hotImg;
                 content = entry.content ?? '默认测试内容';
                 avatar = author.avatar ?? Api.avatar;
                 name = author.username ?? '无名';
@@ -92,6 +92,7 @@ class CommunityListViewState extends State<CommunityListView>
   }
 
   @override
+  // ignore: must_call_super
   Widget build(BuildContext context) {
     ScreenUtil.init(context);
     return Container(

@@ -7,7 +7,7 @@ import 'http_manager.dart';
 class Z6Srv {
   static Future<Hot> queryHot(String position, key) async {
     try {
-      Map<String, dynamic> hotJson = await Z6HttpManager.get(Api.Hot, params: {
+      Map<String, dynamic> hotJson = await Z6HttpManager.get(Api.hot, params: {
         "feedType": "hot",
         "needCommentInfo": "1",
         "needFavoriteInfo": "1",

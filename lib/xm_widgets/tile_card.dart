@@ -32,45 +32,40 @@ class TileCard extends StatelessWidget {
             ),
           ),
           Container(
-            padding:
-                EdgeInsets.symmetric(horizontal: ScreenUtil().setWidth(10)),
-            margin: EdgeInsets.symmetric(vertical: ScreenUtil().setWidth(5)),
+            padding: EdgeInsets.symmetric(horizontal: xmDp(10)),
+            margin: EdgeInsets.symmetric(vertical: xmDp(5)),
             child: Text(
               '$content',
               style: TextStyle(
                   color: Color(0xff343434),
-                  fontSize: ScreenUtil().setSp(17),
+                  fontSize: ScreenUtil().setSp(24),
                   fontWeight: FontWeight.bold),
               maxLines: 2,
               overflow: TextOverflow.ellipsis,
             ),
           ),
           Container(
-            padding: EdgeInsets.only(
-                left: ScreenUtil().setWidth(10),
-                bottom: ScreenUtil().setWidth(10)),
+            padding: EdgeInsets.only(left: xmDp(10), bottom: xmDp(10)),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: <Widget>[
                 Stack(
                   children: <Widget>[
                     Container(
-                      width: ScreenUtil().setWidth(28),
-                      height: ScreenUtil().setWidth(28),
+                      width: xmDp(28),
+                      height: xmDp(28),
                       // color: Colors.red,
                     ),
                     Positioned(
-                      width: ScreenUtil().setWidth(26),
-                      height: ScreenUtil().setWidth(26),
                       child: CircleAvatar(
                         backgroundImage: NetworkImage('$avatar'),
-                        radius: ScreenUtil().setWidth(12),
+                        radius: xmDp(30),
                       ),
                     ),
                     isVip
                         ? Positioned(
-                            width: ScreenUtil().setWidth(12),
-                            height: ScreenUtil().setWidth(12),
+                            width: xmDp(30),
+                            height: xmDp(30),
                             bottom: 0,
                             right: 0,
                             child: CircleAvatar(
@@ -80,26 +75,26 @@ class TileCard extends StatelessWidget {
                         : Text(''),
                     isVip
                         ? Positioned(
-                            width: ScreenUtil().setWidth(10),
-                            height: ScreenUtil().setWidth(10),
-                            bottom: ScreenUtil().setWidth(1),
-                            right: ScreenUtil().setWidth(1),
+                            width: xmDp(28),
+                            height: xmDp(28),
+                            bottom: xmDp(1),
+                            right: xmDp(1),
                             child: CircleAvatar(
                               backgroundImage: AssetImage('res/imgs/vip.png'),
-                              // radius: ScreenUtil().setWidth(28),
+                              // radius: xmDp(28),
                             ),
                           )
                         : Text(''),
                   ],
                 ),
                 Container(
-                  margin: EdgeInsets.only(left: ScreenUtil().setWidth(10)),
-                  width: ScreenUtil().setWidth(220),
+                  margin: EdgeInsets.only(left: xmDp(10)),
+                  width: xmDp(220),
                   child: Text(
                     '$name',
                     style: TextStyle(
                       color: Color(0xff343434),
-                      fontSize: ScreenUtil().setSp(12),
+                      fontSize: ScreenUtil().setSp(20),
                     ),
                   ),
                 ),
@@ -108,20 +103,18 @@ class TileCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Container(
-                        margin:
-                            EdgeInsets.only(right: ScreenUtil().setWidth(5)),
-                        width: ScreenUtil().setWidth(20),
-                        height: ScreenUtil().setWidth(20),
+                        margin: EdgeInsets.only(right: xmDp(10)),
+                        width: xmDp(40),
+                        height: xmDp(40),
                         child: Image.asset('res/imgs/like.png'),
                       ),
                       Container(
-                        margin:
-                            EdgeInsets.only(right: ScreenUtil().setWidth(10)),
+                        margin: EdgeInsets.only(right: xmDp(10)),
                         child: Text(
                           '$likes',
                           style: TextStyle(
                             color: XMColor.kgray,
-                            fontSize: ScreenUtil().setSp(12),
+                            fontSize: ScreenUtil().setSp(20),
                           ),
                         ),
                       )

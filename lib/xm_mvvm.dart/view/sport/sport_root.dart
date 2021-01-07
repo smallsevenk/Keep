@@ -23,7 +23,7 @@ class _SportPageState extends State<SportPage> {
                 title: Text(
                   '运动',
                   style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 22,
                       color: Colors.black,
                       fontWeight: FontWeight.w500),
                 ),
@@ -97,6 +97,7 @@ class _SportPageState extends State<SportPage> {
 
   _body() {
     return ListView(
+      padding: EdgeInsets.all(0),
       children: <Widget>[
         Column(
           children: <Widget>[
@@ -108,11 +109,11 @@ class _SportPageState extends State<SportPage> {
                 ),
                 Text(
                   '下午好，',
-                  style: TextStyle(color: XMColor.light_kgray, fontSize: 12),
+                  style: TextStyle(color: XMColor.lightGray, fontSize: 14),
                 ),
                 Text(
                   sportData['userInfo']['name'],
-                  style: TextStyle(color: XMColor.light_kgray, fontSize: 14),
+                  style: TextStyle(color: XMColor.lightGray, fontSize: 16),
                 ),
               ],
             ),
@@ -131,8 +132,8 @@ class _SportPageState extends State<SportPage> {
                   Text(
                     '订个目标 ，开始Keep! ',
                     style: TextStyle(
-                        color: XMColor.deep_kgray,
-                        fontSize: 18,
+                        color: XMColor.deepGray,
+                        fontSize: 20,
                         fontWeight: FontWeight.w600),
                   ),
                 ],
@@ -144,11 +145,11 @@ class _SportPageState extends State<SportPage> {
             ListTile(
                 title: Text(
                   '已累计运动1862分钟',
-                  style: TextStyle(fontSize: 14),
+                  style: TextStyle(fontSize: 16),
                 ),
                 trailing: Container(
-                  width: ScreenUtil().setHeight(17),
-                  height: ScreenUtil().setHeight(30),
+                  width: xmDp(22),
+                  height: xmDp(44),
                   child: Image(
                     image: AssetImage('res/imgs/comm_detail.png'),
                   ),
@@ -182,16 +183,13 @@ class _SportPageState extends State<SportPage> {
               builder: (BuildContext context) {
                 return Container(
                   padding: EdgeInsets.fromLTRB(
-                      ScreenUtil().setHeight(30),
-                      ScreenUtil().setHeight(30),
-                      ScreenUtil().setHeight(30),
-                      ScreenUtil().setHeight(40)),
+                      xmDp(30), xmDp(30), xmDp(30), xmDp(10)),
                   child: ListView(
+                    padding: EdgeInsets.all(0),
                     physics: NeverScrollableScrollPhysics(),
                     children: <Widget>[
                       Container(
-                        width: ScreenUtil()
-                            .setWidth(ScreenUtil.screenWidth - 10 * 2),
+                        width: xmDp(xmSW() - 10 * 2),
                         child: ClipRRect(
                           child: CachedNetworkImage(
                             imageUrl: img,
@@ -203,13 +201,13 @@ class _SportPageState extends State<SportPage> {
                       SizedBox(height: 10),
                       Text(
                         v['title'],
-                        style: TextStyle(fontSize: 16),
+                        style: TextStyle(fontSize: 18),
                       ),
                       SizedBox(height: 10),
                       Text(
                         v['text'],
                         style:
-                            TextStyle(fontSize: 12, color: XMColor.light_kgray),
+                            TextStyle(fontSize: 14, color: XMColor.lightGray),
                       ),
                     ],
                   ),
@@ -222,13 +220,13 @@ class _SportPageState extends State<SportPage> {
         Container(
             width: Screen.width,
             height: 44,
-            color: XMColor.bg_gray,
+            color: XMColor.bgGray,
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
                 Text('- 没有更多了 -',
                     textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 12, color: XMColor.deep_kgray)),
+                    style: TextStyle(fontSize: 12, color: XMColor.deepGray)),
               ],
             ))
       ],
@@ -282,7 +280,7 @@ class _SportPageState extends State<SportPage> {
                             children: <Widget>[
                               Text(
                                 '${v['averageDuration']} 分钟 · K${v['difficulty']}',
-                                style: TextStyle(fontSize: 12),
+                                style: TextStyle(fontSize: 14),
                               ),
                               SizedBox(
                                 width: 16,
@@ -304,8 +302,8 @@ class _SportPageState extends State<SportPage> {
                         ),
                         Text(
                           '上次训练 $diffTime  ${v['liveUserCount']}人正在练',
-                          style: TextStyle(
-                              fontSize: 10, color: XMColor.light_kgray),
+                          style:
+                              TextStyle(fontSize: 12, color: XMColor.lightGray),
                         ),
                         Expanded(
                           child: Row(
@@ -313,7 +311,7 @@ class _SportPageState extends State<SportPage> {
                             children: <Widget>[
                               Text(
                                 '已下载',
-                                style: TextStyle(fontSize: 10),
+                                style: TextStyle(fontSize: 12),
                               ),
                               SizedBox(
                                 width: 16,
@@ -356,12 +354,11 @@ class _SportPageState extends State<SportPage> {
               title: Text(
             sec1['sectionName'],
             style: TextStyle(
-                fontSize: ScreenUtil().setSp(30), color: Colors.black),
+                fontSize: ScreenUtil().setSp(52), color: Colors.black),
           )),
         ),
         Container(
           width: Screen.width,
-          height: Screen.width,
           padding: EdgeInsets.fromLTRB(20, 40, 20, 0),
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(8),
@@ -374,38 +371,37 @@ class _SportPageState extends State<SportPage> {
                 title: Text(
                   squad['name'],
                   style: TextStyle(
-                      fontSize: ScreenUtil().setSp(44), color: Colors.white),
+                      fontSize: ScreenUtil().setSp(54), color: Colors.white),
                 ),
                 subtitle: Text(
                   des,
                   style: TextStyle(
-                      fontSize: ScreenUtil().setSp(22), color: Colors.white),
+                      fontSize: ScreenUtil().setSp(32), color: Colors.white),
                 ),
                 trailing: Container(
-                  width: ScreenUtil().setWidth(40),
-                  height: ScreenUtil().setHeight(40),
-                  child:
-                      Image.asset('res/imgs/explore_class_section_right.png'),
+                  width: xmDp(60),
+                  height: xmDp(60),
+                  child: Image.asset('res/imgs/explore_class_section_right.png',
+                      fit: BoxFit.fill),
                 ),
               ),
               SizedBox(height: 20),
               Container(
-                height: 120,
-                child: Container(
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(5),
-                      color: Colors.white),
-                  child: ListView(
-                    physics: NeverScrollableScrollPhysics(),
-                    children: <Widget>[
-                      _teamCell(week, 0),
-                      Divider(height: 0.5),
-                      _teamCell(week, 1),
-                    ],
-                  ),
+                decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(5),
+                    color: Colors.white),
+                child: ListView(
+                  padding: EdgeInsets.all(0),
+                  shrinkWrap: true,
+                  physics: NeverScrollableScrollPhysics(),
+                  children: <Widget>[
+                    _teamCell(week, 0),
+                    Divider(height: 0.5),
+                    _teamCell(week, 1),
+                  ],
                 ),
               ),
-              SizedBox(height: 35),
+              SizedBox(height: 15),
               Container(
                 width: Screen.width - 20 * 2,
                 height: 50,
@@ -452,7 +448,8 @@ class _SportPageState extends State<SportPage> {
                     ),
                   ],
                 ),
-              )
+              ),
+              SizedBox(height: 10),
             ],
           ),
         ),
@@ -480,7 +477,10 @@ class _SportPageState extends State<SportPage> {
               child: Image.asset('res/imgs/sport_check_${info['flag']}.png'),
             ),
             SizedBox(width: 20),
-            Text(info['task']['title'])
+            Text(
+              info['task']['title'],
+              style: TextStyle(fontSize: 16),
+            )
           ],
         ),
       ),
@@ -522,13 +522,13 @@ class _SportPageState extends State<SportPage> {
       child: Row(
         children: <Widget>[
           SizedBox(
-            width: ScreenUtil().setWidth(28),
-            height: ScreenUtil().setWidth(78),
+            width: xmDp(28),
+            height: xmDp(78),
           ),
           Text(
             title,
             style: TextStyle(
-                fontSize: ScreenUtil().setSp(28), color: XMColor.deep_kgray),
+                fontSize: ScreenUtil().setSp(52), color: XMColor.deepGray),
           ),
           Expanded(
             child: Row(
@@ -543,13 +543,13 @@ class _SportPageState extends State<SportPage> {
                               borderRadius: BorderRadius.circular(12)),
                           child: Text(
                             '发现课程',
-                            style: TextStyle(fontSize: 10, color: Colors.white),
+                            style: TextStyle(fontSize: 12, color: Colors.white),
                           ),
                         )
                       : Text(''),
                 ),
                 SizedBox(
-                  width: ScreenUtil().setWidth(28),
+                  width: xmDp(28),
                 ),
               ],
             ),
@@ -561,8 +561,8 @@ class _SportPageState extends State<SportPage> {
 
   _grayGap() {
     return Container(
-      height: ScreenUtil().setHeight(22),
-      color: XMColor.bg_gray,
+      height: xmDp(22),
+      color: XMColor.bgGray,
     );
   }
 }
@@ -571,9 +571,9 @@ Widget _tabBar() {
   return TabBar(
     isScrollable: true,
     labelColor: XMColor.darkGray,
-    labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+    labelStyle: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
     unselectedLabelColor: XMColor.kgray,
-    indicatorColor: XMColor.deep_kgray,
+    indicatorColor: XMColor.deepGray,
     indicatorSize: TabBarIndicatorSize.label,
     indicatorWeight: 2,
     indicatorPadding: EdgeInsets.fromLTRB(8, 0, 8, 5),

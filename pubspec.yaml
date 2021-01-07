@@ -82,45 +82,6 @@ flutter:
   assets:
     #comm
     - res/imgs/
-    # - res/imgs/cry.png 
-    # - res/imgs/empty.png
-    # - res/imgs/arrow_right.png 
-    # - res/imgs/arrow_down.png
-    # - res/imgs/arrow_up.png 
-    # - res/imgs/pop.png
-    # - res/imgs/add.png
-    # - res/imgs/check.png
-    # - res/imgs/uncheck.png
-    # - res/imgs/default_choice.png
-    # - res/imgs/dotted_line.png 
-    # - res/imgs/empty.png
-    # - res/imgs/az_pop.png
-    # - res/imgs/copy.png  
-    # - res/imgs/more.png
-    # - res/imgs/pwd_open.png
-    # - res/imgs/pwd_close.png 
-    # - res/imgs/tk_icon_default.png
-    # - res/imgs/logo.png 
-    # - res/imgs/logo_box.png 
-    # - res/imgs/pwd_validate_icon.png
-    # - res/imgs/close.png
-    # - res/imgs/warning.png
-    # - res/imgs/qrcode_box.png
-    # - res/imgs/search.png
-    # - res/imgs/dapp_search.png
-    # - res/imgs/trash.png
-
-    #下导航
-    # - res/imgs/tab_0.png
-    # - res/imgs/tab_1.png
-    # - res/imgs/tab_2.png 
-
-    #设置
-    # - res/imgs/setting_name.png
-    # - res/imgs/setting_pwd.png
-    # - res/imgs/setting_version.png
-    # - res/imgs/setting_email.png
-    # - res/imgs/setting_us.png 
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.

@@ -15,7 +15,7 @@ class _MePageState extends State<MePage> {
   Widget build(BuildContext context) {
     SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle.light);
     return Container(
-      color: XMColor.bg_gray,
+      color: XMColor.bgGray,
       padding: EdgeInsets.all(0),
       child: ListView(
         padding: EdgeInsets.all(0),
@@ -23,7 +23,7 @@ class _MePageState extends State<MePage> {
           _header(),
           _subHeader(),
           Container(
-            color: XMColor.bg_gray,
+            color: XMColor.bgGray,
             padding: EdgeInsets.only(left: 10, right: 10),
             child: Column(
               children: <Widget>[
@@ -44,7 +44,7 @@ class _MePageState extends State<MePage> {
   }
 
   _grayGap() {
-    return Container(color: XMColor.bg_gray, height: 10, width: Screen.width);
+    return Container(color: XMColor.bgGray, height: 10, width: Screen.width);
   }
 
   _header() {
@@ -117,7 +117,7 @@ class _MePageState extends State<MePage> {
                     SizedBox(height: 5),
                     Text(
                       user['username'],
-                      style: TextStyle(fontSize: 18, color: XMColor.vip_color),
+                      style: TextStyle(fontSize: 18, color: XMColor.vipColor),
                     ),
                     SizedBox(height: 5),
                     Row(

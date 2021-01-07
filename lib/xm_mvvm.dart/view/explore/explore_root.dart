@@ -17,9 +17,6 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
 
   int _position = 0; //表示从第几条开始取
 
-  @override
-  bool get wantKeepAlive => true;
-
   get trailing => null;
 
   @override
@@ -59,15 +56,15 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
       //   fontSize: ScreenUtil().setSp(28),
       // ),
       // unselectedLabelColor: XMColor.kgray,
-      // indicatorColor: XMColor.deep_kgray,
+      // indicatorColor: XMColor.deepGray,
       // indicatorSize: TabBarIndicatorSize.label,
       // indicatorWeight: 2,
       // indicatorPadding: EdgeInsets.fromLTRB(8, 0, 8, 5),
 
       labelColor: XMColor.darkGray,
-      labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+      labelStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       unselectedLabelColor: XMColor.kgray,
-      indicatorColor: XMColor.deep_kgray,
+      indicatorColor: XMColor.deepGray,
       indicatorSize: TabBarIndicatorSize.label,
       indicatorWeight: 2,
       indicatorPadding: EdgeInsets.fromLTRB(8, 0, 8, 5),
@@ -96,6 +93,7 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
         child: Column(
           children: <Widget>[
             CircleAvatar(
+              radius: 25,
               backgroundColor: Colors.white,
               backgroundImage:
                   NetworkImage('https://static1.keepcdn.com${v['icon']}'),
@@ -104,7 +102,7 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
             Text(
               v['title'],
               style: TextStyle(
-                  color: XMColor.deep_kgray, fontSize: ScreenUtil().setSp(22)),
+                  color: XMColor.deepGray, fontSize: ScreenUtil().setSp(36)),
             )
           ],
         ),
@@ -129,14 +127,10 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
           return new Builder(
             builder: (BuildContext context) {
               return Container(
-                padding: EdgeInsets.fromLTRB(
-                    ScreenUtil().setHeight(30),
-                    ScreenUtil().setHeight(30),
-                    ScreenUtil().setHeight(30),
-                    ScreenUtil().setHeight(40)),
+                padding:
+                    EdgeInsets.fromLTRB(xmDp(30), xmDp(30), xmDp(30), xmDp(40)),
                 child: Container(
-                  width: ScreenUtil()
-                      .setWidth(ScreenUtil.screenWidth - margin8 * 2),
+                  width: xmSW() - margin8 * 2,
                   child: ClipRRect(
                     child: CachedNetworkImage(
                       imageUrl: img,
@@ -149,7 +143,7 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
             },
           );
         }).toList(),
-        height: 180.0);
+        height: xmDp(450));
   }
 
   //栏标题
@@ -161,24 +155,24 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
       child: Row(
         children: <Widget>[
           SizedBox(
-            width: ScreenUtil().setWidth(28),
-            height: ScreenUtil().setWidth(78),
+            width: xmDp(28),
+            height: xmDp(118),
           ),
           Text(
             title,
             style: TextStyle(
-                fontSize: ScreenUtil().setSp(28), color: XMColor.deep_kgray),
+                fontSize: ScreenUtil().setSp(52), color: XMColor.deepGray),
           ),
           Expanded(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 Container(
-                  height: ScreenUtil().setWidth(78),
+                  height: xmDp(78),
                   child: showDetail
                       ? Container(
-                          width: ScreenUtil().setHeight(17),
-                          height: ScreenUtil().setHeight(30),
+                          width: xmDp(22),
+                          height: xmDp(44),
                           child: Image(
                             image: AssetImage('res/imgs/comm_detail.png'),
                           ),
@@ -186,7 +180,7 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
                       : Text(''),
                 ),
                 SizedBox(
-                  width: ScreenUtil().setWidth(28),
+                  width: xmDp(28),
                 ),
               ],
             ),
@@ -200,22 +194,18 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
   _hotClassCategory() {
     List _classCategories = ['减脂', '瑜伽', '有氧操', '学生专属', '腹肌马甲线', '为你推荐'];
     return Wrap(
-        spacing: ScreenUtil().setWidth(28), // 主轴(水平)方向间距
-        runSpacing: ScreenUtil().setWidth(16), // 纵轴（垂直）方向间距
+        spacing: xmDp(28), // 主轴(水平)方向间距
+        runSpacing: xmDp(16), // 纵轴（垂直）方向间距
         alignment: WrapAlignment.start, //沿主轴方向居中
         children: _classCategories.map((title) {
           return Container(
             decoration: BoxDecoration(
                 color: Color(0xfff6f6f6),
-                borderRadius: BorderRadius.all(
-                    Radius.circular(ScreenUtil().setWidth(24)))),
+                borderRadius: BorderRadius.all(Radius.circular(xmDp(24)))),
 
             // alignment: Alignment.centerLeft,
-            padding: EdgeInsets.fromLTRB(
-                ScreenUtil().setWidth(20),
-                ScreenUtil().setWidth(10),
-                ScreenUtil().setWidth(20),
-                ScreenUtil().setWidth(10)),
+            padding:
+                EdgeInsets.fromLTRB(xmDp(20), xmDp(10), xmDp(20), xmDp(10)),
             child: InkWell(
               onTap: () {
                 Toast.show(title);
@@ -223,8 +213,8 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
               child: Text(
                 title,
                 style: TextStyle(
-                  color: XMColor.deep_kgray,
-                  fontSize: ScreenUtil().setSp(22),
+                  color: XMColor.deepGray,
+                  fontSize: ScreenUtil().setSp(36),
                   // fontFamily: 'fzxbs',
                 ),
               ),
@@ -241,60 +231,65 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
       {'title': '7月跑量挑战', 'num': '179171'},
       {'title': '暑假悄悄变瘦计划', 'num': '401395'}
     ];
-    return SafeArea(
-      child: GridView.count(
-          physics: NeverScrollableScrollPhysics(),
-          crossAxisCount: 2,
-          childAspectRatio: 197 / 125,
-          crossAxisSpacing: ScreenUtil().setWidth(16),
-          mainAxisSpacing: ScreenUtil().setHeight(20),
-          children: _activities.map((v) {
-            int _idx = _activities.indexOf(v);
-            double _leftPadding = ScreenUtil().setWidth(28);
-            double _rightPadding = 0;
-            var img = 'res/imgs/explore_hot_activity_0' +
-                (_idx + 1).toString() +
-                '.png';
-            if ((_idx % 2).isOdd) {
-              _rightPadding = _leftPadding;
-              _leftPadding = 0;
-            }
-            return InkWell(
-              onTap: () {
-                Toast.show(v['title']);
-              },
-              child: Container(
-                padding: EdgeInsets.fromLTRB(_leftPadding, 0, _rightPadding, 0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    ClipRRect(
-                      child: Image.asset(img),
-                      borderRadius: BorderRadius.circular(3),
-                    ),
-                    SizedBox(height: ScreenUtil().setHeight(10)),
-                    Text(
-                      v['title'],
-                      style: TextStyle(
-                        color: XMColor.deep_kgray,
-                        fontSize: ScreenUtil().setSp(24),
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(height: ScreenUtil().setHeight(10)),
-                    Text(
-                      v['num'] + ' 已参加',
-                      style: TextStyle(
-                        color: XMColor.light_kgray,
-                        fontSize: ScreenUtil().setSp(22),
-                      ),
-                    )
-                  ],
+
+    var h = xmDp(340);
+    var count = 2;
+    return Container(
+        child: GridView.count(
+      padding: EdgeInsets.all(0),
+      shrinkWrap: true,
+      physics: NeverScrollableScrollPhysics(),
+      crossAxisCount: count,
+      childAspectRatio: xmSW() / (h * count),
+      crossAxisSpacing: xmDp(16),
+      mainAxisSpacing: xmDp(20),
+      children: _activities.map((v) {
+        int _idx = _activities.indexOf(v);
+        double _leftPadding = xmDp(28);
+        double _rightPadding = 0;
+        var img =
+            'res/imgs/explore_hot_activity_0' + (_idx + 1).toString() + '.png';
+        if ((_idx % 2).isOdd) {
+          _rightPadding = _leftPadding;
+          _leftPadding = 0;
+        }
+        return InkWell(
+          onTap: () {
+            Toast.show(v['title']);
+          },
+          child: Container(
+            padding: EdgeInsets.fromLTRB(_leftPadding, 0, _rightPadding, 0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                ClipRRect(
+                  child: Image.asset(img),
+                  borderRadius: BorderRadius.circular(3),
                 ),
-              ),
-            );
-          }).toList()),
-    );
+                SizedBox(height: xmDp(10)),
+                Text(
+                  v['title'],
+                  style: TextStyle(
+                    color: XMColor.deepGray,
+                    fontSize: ScreenUtil().setSp(34),
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                SizedBox(height: xmDp(10)),
+                Container(
+                    child: Text(
+                  v['num'] + ' 已参加',
+                  style: TextStyle(
+                    color: XMColor.lightGray,
+                    fontSize: ScreenUtil().setSp(32),
+                  ),
+                ))
+              ],
+            ),
+          ),
+        );
+      }).toList(),
+    ));
   }
 
   _funExplore() {
@@ -326,9 +321,11 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
       }
     ];
     return GridView.count(
+        shrinkWrap: true,
+        padding: EdgeInsets.all(10),
         physics: NeverScrollableScrollPhysics(),
         crossAxisCount: 3,
-        crossAxisSpacing: ScreenUtil().setWidth(16),
+        crossAxisSpacing: xmDp(16),
         mainAxisSpacing: 0,
         children: _entrances.map((v) {
           return InkWell(
@@ -350,9 +347,8 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
     return classInfoList.map((v) {
       List plans = v['plans'];
       return Container(
-        height: 400,
-        padding: EdgeInsets.fromLTRB(ScreenUtil().setWidth(16), 0,
-            ScreenUtil().setWidth(16), ScreenUtil().setWidth(16)),
+        height: xmDp(900),
+        padding: EdgeInsets.fromLTRB(xmDp(16), 0, xmDp(16), xmDp(16)),
         child: Container(
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(5),
@@ -378,18 +374,18 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
                     title: Text(
                       v['name'],
                       style: TextStyle(
-                          fontSize: ScreenUtil().setSp(40),
+                          fontSize: ScreenUtil().setSp(50),
                           color: Colors.white),
                     ),
                     subtitle: Text(
                       v['description'],
                       style: TextStyle(
-                          fontSize: ScreenUtil().setSp(20),
+                          fontSize: ScreenUtil().setSp(30),
                           color: Colors.white),
                     ),
                     trailing: Container(
-                      width: ScreenUtil().setWidth(40),
-                      height: ScreenUtil().setHeight(40),
+                      width: xmDp(60),
+                      height: xmDp(60),
                       child: Image.asset(
                           'res/imgs/explore_class_section_right.png'),
                     ),
@@ -397,15 +393,15 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
                 ],
               ),
               Container(
-                height: 260,
-                padding: EdgeInsets.fromLTRB(ScreenUtil().setWidth(20), 0,
-                    ScreenUtil().setWidth(20), ScreenUtil().setWidth(20)),
+                padding: EdgeInsets.fromLTRB(xmDp(20), 0, xmDp(20), xmDp(20)),
                 child: Container(
                   padding: EdgeInsets.all(0),
                   decoration: BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(5)),
                   child: ListView(
+                      shrinkWrap: true,
+                      padding: EdgeInsets.all(0),
                       physics: NeverScrollableScrollPhysics(),
                       children: ListTile.divideTiles(
                               context: context, tiles: _planListTiles(plans))
@@ -421,29 +417,35 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
 
   _planListTiles(List plan) {
     return plan.map((plan) {
-      return Container(
-        child: ListTile(
-          leading: Container(
-            width: ScreenUtil().setWidth(100),
-            height: ScreenUtil().setWidth(100),
-            child: ClipRRect(
-              child: CachedNetworkImage(
-                imageUrl: plan['picture'],
-                fit: BoxFit.cover,
-              ),
-              borderRadius: BorderRadius.circular(3),
+      return Row(
+        children: <Widget>[
+          SizedBox(width: margin8, height: xmDp(125) + margin8 * 2),
+          ClipRRect(
+            child: CachedNetworkImage(
+              imageUrl: plan['picture'],
+              fit: BoxFit.cover,
+              width: xmDp(125),
+              height: xmDp(125),
             ),
+            borderRadius: BorderRadius.circular(3),
           ),
-          title: Text(
-            plan['title'],
-            style: TextStyle(fontSize: ScreenUtil().setSp(28)),
+          SizedBox(width: margin8),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                plan['title'],
+                style: TextStyle(fontSize: ScreenUtil().setSp(38)),
+              ),
+              SizedBox(height: 3),
+              Text(
+                'K${plan['difficulty']} ${_keppLev(plan['difficulty'])}·${plan['averageDuration']}分钟',
+                style: TextStyle(
+                    fontSize: ScreenUtil().setSp(30), color: XMColor.lightGray),
+              )
+            ],
           ),
-          subtitle: Text(
-            'K${plan['difficulty']} ${_keppLev(plan['difficulty'])}·${plan['averageDuration']}分钟',
-            style: TextStyle(
-                fontSize: ScreenUtil().setSp(20), color: XMColor.light_kgray),
-          ),
-        ),
+        ],
       );
     }).toList();
   }
@@ -462,13 +464,14 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
 
   _grayGap() {
     return Container(
-      height: ScreenUtil().setHeight(22),
-      color: XMColor.bg_gray,
+      height: xmDp(22),
+      color: XMColor.bgGray,
     );
   }
 
   Widget _refreshView() {
-    return Column(
+    return ListView(
+      shrinkWrap: true,
       children: <Widget>[
         //第一栏
         Column(
@@ -477,11 +480,14 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
             //banner 图
             _bannberView(),
             // 快捷入口
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: _fastEntryView(),
+            Container(
+              padding: EdgeInsets.symmetric(horizontal: margin8 * 2),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: _fastEntryView(),
+              ),
             ),
-            SizedBox(height: ScreenUtil().setHeight(40)),
+            SizedBox(height: xmDp(40)),
           ],
         ),
         _grayGap(),
@@ -491,32 +497,21 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
           Container(
             child: _hotClassCategory(),
           ),
-          SizedBox(height: ScreenUtil().setHeight(40)),
+          SizedBox(height: xmDp(40)),
         ]),
         _grayGap(),
         //第��栏
         Column(
           children: <Widget>[
             _sectionView('全站热门活动', true),
-            Container(
-              height: 255,
-              child: _hotActivity(),
-            ),
-            SizedBox(height: ScreenUtil().setHeight(40)),
+            _hotActivity(),
+            SizedBox(height: xmDp(40)),
           ],
         ),
         _grayGap(),
         //��四栏
         Column(
-          children: <Widget>[
-            _sectionView('趣味探索', true),
-            Container(
-              padding: EdgeInsets.fromLTRB(
-                  ScreenUtil().setWidth(16), 0, ScreenUtil().setWidth(16), 0),
-              height: 155,
-              child: _funExplore(),
-            ),
-          ],
+          children: <Widget>[_sectionView('趣味探索', true), _funExplore()],
         ),
         _grayGap(),
         //第五栏
@@ -568,7 +563,7 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
             pinned: false,
             title: Text('搜索',
                 style: TextStyle(
-                    fontSize: 20,
+                    fontSize: 22,
                     color: Colors.black,
                     fontWeight: FontWeight.w500)),
           ),

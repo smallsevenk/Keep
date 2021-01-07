@@ -4,7 +4,6 @@ import 'package:device_info/device_info.dart';
 import 'package:framework/xm_widgets/widgets_config.dart';
 import 'package:framework/xm_application/app_enum.dart';
 import 'package:framework/xm_utils/environment/evn_model.dart';
-import 'package:framework/xm_utils/screen.dart';
 
 class XMAppGlobal {
   // 环境配置

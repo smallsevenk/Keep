@@ -85,7 +85,7 @@ class Z6HttpManager {
     if (dio == null) {
       // 全局属性：请求前缀、连接超时时间、响应超时时间
       BaseOptions options = new BaseOptions(
-        baseUrl: Api.PREFIX,
+        baseUrl: Api.prefix,
         connectTimeout: CONNECT_TIMEOUT,
         receiveTimeout: RECEIVE_TIMEOUT,
       );
@@ -95,7 +95,7 @@ class Z6HttpManager {
     }
 
     dio = new Dio();
-    dio.options.baseUrl = Api.PREFIX;
+    dio.options.baseUrl = Api.prefix;
     return dio;
   }
 
