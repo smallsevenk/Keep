@@ -1,16 +1,14 @@
-# framework
+keep
+学习就要从撸App开始，Let's go.
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+所学知识点
+1.配置AppIcon和启动图
+2.iOS模拟器+真机调试
+3.上下导航组件使用
+4.网络请求(封装Dio)
+5.序列化和反序列化
+6.自动生成符合json_serializable规则的文件
+7.网络图片加载
+8.选项卡控件使用
+9.上下拉刷新
+过去多久计算（1s前，3天前，一个月前）-运动-我的课程
