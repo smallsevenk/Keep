@@ -29,7 +29,7 @@
 25.自适应缩放字体大小  
   
 ##Showcase  
-![image text]https://github.com/smallsevenk/Keep/blob/master/screenShot/%E7%A4%BE%E5%8C%BA.jpeg)  
-![image text]https://github.com/smallsevenk/Keep/blob/master/screenShot/%E6%88%91.jpeg)   
+![Image text]https://github.com/smallsevenk/Keep/blob/master/screenShot/%E7%A4%BE%E5%8C%BA.jpeg)  
+![Image text]https://github.com/smallsevenk/Keep/blob/master/screenShot/%E6%88%91.jpeg)   
 
 
