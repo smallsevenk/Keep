@@ -8,7 +8,6 @@ import 'package:framework/xm_mvvm.dart/model/hot.dart';
 import 'package:framework/xm_network/api.dart';
 import 'package:framework/xm_network/server.dart';
 import 'package:framework/xm_widgets/tile_card.dart';
-
 import '../../../public.dart';
 
 class KeepCommRootScene extends StatefulWidget {
@@ -18,8 +17,8 @@ class KeepCommRootScene extends StatefulWidget {
 
 class KeepCommRootSceneState extends State<KeepCommRootScene> {
   bool _showCancel = false;
-
-  NestedScrollView _supCtr;
+  TabController tabCtr;
+  var tabs = ['热门', '关注', '话题', '同城'];
   TextEditingController searchCtr = TextEditingController();
 
   _searchBarWid() {
@@ -71,67 +70,6 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
     );
   }
 
-  NestedScrollView _getSuperWidget() {
-    return NestedScrollView(
-      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-        return <Widget>[
-          SliverAppBar(
-            automaticallyImplyLeading: false,
-            brightness: Brightness.light,
-            backgroundColor: Colors.white,
-            expandedHeight: 0.0,
-            floating: false,
-            snap: false,
-            pinned: false,
-            leading: null,
-            centerTitle: false,
-            title: _searchBarWid(),
-            actions: <Widget>[
-              _showCancel
-                  ? Container(
-                      width: 40,
-                      height: 20,
-                      child: FlatButton(
-                        padding: EdgeInsets.all(0),
-                        onPressed: () {
-                          searchCtr.clear();
-                          FocusScope.of(context).requestFocus(FocusNode());
-                          setState(() {
-                            _showCancel = false;
-                          });
-                        },
-                        child: XMText.create(
-                          '取消',
-                          color: Colors.green,
-                        ),
-                      ),
-                    )
-                  : IconButton(
-                      icon: new Icon(Icons.person_add),
-                      color: Colors.grey,
-                      iconSize: 22.0,
-                      onPressed: () {
-                        Toast.show('添加好友');
-                      },
-                    ),
-              _showCancel ? SizedBox(width: 10) : Text('')
-            ],
-          ),
-          SliverPersistentHeader(
-            delegate: _SliverAppBarDelegate(
-              _tabBar(),
-            ),
-            pinned: true,
-          ),
-          SliverOverlapAbsorber(
-            handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-          ),
-        ];
-      },
-      body: _tabBarView(),
-    );
-  }
-
   int _position = 0; //表示从第几条开始取
 
   List<Entrys> posts = [];
@@ -145,7 +83,10 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
   @override
   void initState() {
     super.initState();
-
+    tabCtr = TabController(
+      length: tabs.length,
+      vsync: ScrollableState(),
+    );
     // 首次拉取数据
     _fetchData();
   }
@@ -167,6 +108,7 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
 
   Widget _tabBar() {
     return TabBar(
+      controller: tabCtr,
       labelColor: XMColor.darkGray,
       labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
       unselectedLabelColor: XMColor.kgray,
@@ -174,12 +116,11 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
       indicatorSize: TabBarIndicatorSize.label,
       indicatorWeight: 2,
       indicatorPadding: EdgeInsets.fromLTRB(8, 0, 8, 5),
-      tabs: [
-        Tab(text: '热门'),
-        Tab(text: '关注'),
-        Tab(text: '话题'),
-        Tab(text: '同城'),
-      ],
+      tabs: tabs
+          .map(
+            (e) => Tab(text: e),
+          )
+          .toList(),
     );
   }
 
@@ -241,57 +182,77 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
 
   Widget _tabBarView() {
     return TabBarView(
+      controller: tabCtr,
       children: [
         Container(child: _refreshView()),
-        Text('data2'),
-        Text('data3'),
-        Text('data4'),
+        XMEmpty.show(
+          'Comming Soon',
+          iconImgPath: imgPath('smile'),
+        ),
+        XMEmpty.show(
+          'Comming Soon',
+          iconImgPath: imgPath('smile'),
+        ),
+        XMEmpty.show(
+          'Comming Soon',
+          iconImgPath: imgPath('smile'),
+        )
       ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    _supCtr = _getSuperWidget();
     return Scaffold(
-      body: DefaultTabController(
-        length: 4,
-        child: _supCtr ?? Container(),
+      appBar: AppBar(
+        elevation: 0,
+        title: _searchBarWid(),
+        bottom: PreferredSize(
+          child: Container(
+            child: _tabBar(),
+          ),
+          preferredSize: Size(xmSW(), 40),
+        ),
+        actions: <Widget>[
+          _showCancel
+              ? Container(
+                  width: 40,
+                  height: 20,
+                  child: FlatButton(
+                    padding: EdgeInsets.all(0),
+                    onPressed: () {
+                      searchCtr.clear();
+                      FocusScope.of(context).requestFocus(FocusNode());
+                      setState(() {
+                        _showCancel = false;
+                      });
+                    },
+                    child: XMText.create(
+                      '取消',
+                      color: Colors.green,
+                    ),
+                  ),
+                )
+              : IconButton(
+                  icon: new Icon(Icons.person_add),
+                  color: Colors.grey,
+                  iconSize: 22.0,
+                  onPressed: () {
+                    Toast.show('添加好友');
+                  },
+                ),
+          _showCancel ? SizedBox(width: 10) : Text('')
+        ],
       ),
+      body: _tabBarView(),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
-          Toast.show('点个金币啊111111');
+          commingSoon();
         },
         child: Image(
           image: AssetImage('res/imgs/comm_photo.png'),
         ),
       ),
     );
-  }
-}
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _SliverAppBarDelegate(this._tabBar);
-
-  final TabBar _tabBar;
-
-  @override
-  double get minExtent => _tabBar.preferredSize.height;
-  @override
-  double get maxExtent => _tabBar.preferredSize.height;
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: Colors.white,
-      padding: EdgeInsets.symmetric(horizontal: 15),
-      child: _tabBar,
-    );
-  }
-
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return false;
   }
 }

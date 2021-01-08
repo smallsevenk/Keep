@@ -55,7 +55,7 @@ class _MePageState extends State<MePage> {
       decoration: BoxDecoration(color: XMColor.black_3),
       child: Column(
         children: <Widget>[
-          SizedBox(height: 20),
+          SizedBox(height: 40),
           Row(
             children: <Widget>[
               SizedBox(

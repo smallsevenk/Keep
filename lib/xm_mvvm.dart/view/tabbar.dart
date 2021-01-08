@@ -106,9 +106,9 @@ class _XMTabbarPageState extends XMBasePageState {
 
   Image getTabIcon(int index) {
     if (index == currIdx) {
-      return Image.asset('res/imgs/tabs_${index}_1.png');
+      return Image.asset('res/imgs/tab_$index.png');
     } else {
-      return Image.asset('res/imgs/tabs_${index}_0.png');
+      return Image.asset('res/imgs/tab_$index.png', color: Colors.grey);
     }
   }
 }

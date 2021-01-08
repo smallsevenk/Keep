@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -9,20 +11,16 @@ const debug = true;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIOverlays(SystemUiOverlay.values);
-  // while (window.physicalSize.isEmpty) {}
-  // //如果size是0，则设置回调，在回调中runApp
-  // if (window.physicalSize.isEmpty) {
-  //   window.onMetricsChanged = () async {
-  //     //在回调中，size仍然有可能是0
-  //     if (!window.physicalSize.isEmpty) {
-  //       window.onMetricsChanged = null;
-  //       await XMAppGlobal.init();
-  //       runApp(new MyApp());
-  //     }
-  //   };
-  // } else {
-  //   //如果size非0，则直接runApp
+
+  if (Platform.isAndroid) {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ));
+  } else {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+    ));
+  }
   SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp])
       .then((_) {
     runApp(

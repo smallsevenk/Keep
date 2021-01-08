@@ -13,11 +13,9 @@ class ExploreRootScene extends StatefulWidget {
 const VARIANTS_PRIMARY = Color.fromRGBO(0, 119, 253, 1);
 
 class _ExploreRootSceneState extends State<ExploreRootScene> {
-  NestedScrollView _supCtr;
-
+  TabController tabCtr;
+  var tabs = ['课程与挑战', '运动商城', '健康轻食', '硬件商城'];
   int _position = 0; //表示从第几条开始取
-
-  get trailing => null;
 
   @override
   void dispose() {
@@ -28,7 +26,10 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
   @override
   void initState() {
     super.initState();
-
+    tabCtr = TabController(
+      length: tabs.length,
+      vsync: ScrollableState(),
+    );
     // 首次拉取数据
     _fetchData();
   }
@@ -51,29 +52,19 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
   Widget _tabBar() {
     return TabBar(
       isScrollable: true,
-      // labelColor: XMColor.darkGray,
-      // labelStyle: TextStyle(
-      //   fontSize: ScreenUtil().setSp(28),
-      // ),
-      // unselectedLabelColor: XMColor.kgray,
-      // indicatorColor: XMColor.deepGray,
-      // indicatorSize: TabBarIndicatorSize.label,
-      // indicatorWeight: 2,
-      // indicatorPadding: EdgeInsets.fromLTRB(8, 0, 8, 5),
-
-      labelColor: XMColor.darkGray,
+      controller: tabCtr,
       labelStyle: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
       unselectedLabelColor: XMColor.kgray,
       indicatorColor: XMColor.deepGray,
+      labelColor: XMColor.darkGray,
       indicatorSize: TabBarIndicatorSize.label,
       indicatorWeight: 2,
       indicatorPadding: EdgeInsets.fromLTRB(8, 0, 8, 5),
-      tabs: [
-        Tab(text: '课程与挑战'),
-        Tab(text: '运动商城'),
-        Tab(text: '健康轻食'),
-        Tab(text: '硬件商城'),
-      ],
+      tabs: tabs
+          .map(
+            (e) => Tab(text: e),
+          )
+          .toList(),
     );
   }
 
@@ -538,85 +529,29 @@ class _ExploreRootSceneState extends State<ExploreRootScene> {
     );
   }
 
-  Widget _tabBarView() {
-    return TabBarView(
-      children: [
-        Container(child: _easyRefresh()),
-        Text('data2'),
-        Text('data3'),
-        Text('data4'),
-      ],
-    );
-  }
-
-  NestedScrollView _getSuperWidget() {
-    return NestedScrollView(
-      headerSliverBuilder: (BuildContext context, bool innerBoxIsScrolled) {
-        return <Widget>[
-          SliverAppBar(
-            centerTitle: false,
-            brightness: Brightness.light,
-            backgroundColor: Colors.white,
-            expandedHeight: 0.0,
-            floating: false,
-            snap: false,
-            pinned: false,
-            title: Text('搜索',
-                style: TextStyle(
-                    fontSize: 22,
-                    color: Colors.black,
-                    fontWeight: FontWeight.w500)),
-          ),
-          SliverPersistentHeader(
-            delegate: _SliverAppBarDelegate(
-              _tabBar(),
-            ),
-            pinned: true,
-          ),
-          SliverOverlapAbsorber(
-            handle: NestedScrollView.sliverOverlapAbsorberHandleFor(context),
-          ),
-        ];
-      },
-      body: _tabBarView(),
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
-    _supCtr = _getSuperWidget();
-
     return Scaffold(
-      body: DefaultTabController(
-        length: 4,
-        child: _supCtr ?? Container(),
+      appBar: AppBar(
+        elevation: 0,
+        title: Text('搜索',
+            style: TextStyle(
+                fontSize: 22,
+                color: Colors.black,
+                fontWeight: FontWeight.w500)),
+        bottom: PreferredSize(
+          child: Container(
+            child: _tabBar(),
+          ),
+          preferredSize: Size(xmSW(), 40),
+        ),
+      ),
+      body: TabBarView(
+        controller: tabCtr,
+        children: tabs.map((e) {
+          return Container(child: _easyRefresh());
+        }).toList(),
       ),
     );
-  }
-}
-
-class _SliverAppBarDelegate extends SliverPersistentHeaderDelegate {
-  _SliverAppBarDelegate(this._tabBar);
-
-  final TabBar _tabBar;
-
-  @override
-  double get minExtent => _tabBar.preferredSize.height;
-  @override
-  double get maxExtent => _tabBar.preferredSize.height;
-
-  @override
-  Widget build(
-      BuildContext context, double shrinkOffset, bool overlapsContent) {
-    return Container(
-      color: Colors.white,
-      padding: EdgeInsets.symmetric(horizontal: 15),
-      child: _tabBar,
-    );
-  }
-
-  @override
-  bool shouldRebuild(_SliverAppBarDelegate oldDelegate) {
-    return false;
   }
 }

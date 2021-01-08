@@ -1,4 +1,9 @@
 import 'package:flutter/services.dart';
+import 'package:framework/xm_utils/toast.dart';
+
+commingSoon() {
+  Toast.show('Coming soon');
+}
 
 xmKeyboradHide() {
   print('xmKeyboradHide');

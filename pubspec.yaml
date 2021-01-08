@@ -52,7 +52,7 @@ dependencies:
   webview_flutter:
     path: /Users/zick/zwork/tools/flutter_plugins/packages/webview_flutter
   bubble_tab_indicator: 0.1.4 
-  flutter_localizations: #国际化 
+  # flutter_localizations: #国际化 
     
   #XM
   # xm_nav_router:
