@@ -31,9 +31,9 @@
 ##Showcase  
 <image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/community.jpg" width="300">
 <image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/explore1.jpg" width="300">  
-<image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/explore2.jpg" width="300">  
+<image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/explore2.jpg" width="300">
 <image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/sport1.jpg" width="300">  
-<image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/sport2.jpg" width="300">  
+<image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/sport2.jpg" width="300">
 <image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/plan.jpg" width="300">  
 <image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/me.jpg" width="300">
 
