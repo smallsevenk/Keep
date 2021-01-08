@@ -34,12 +34,12 @@
     <td align="center">
       <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/community1.jpg" width="200px">
       <br />
-      RotatingPlain
+      社区
     </td>
     <td align="center">
       <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/community2.jpg" width="200px">
       <br />
-      DoubleBounce
+      社区
     </td>
  
   </tr>
@@ -47,12 +47,12 @@
     <td align="center">
       <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/explore1.jpg" width="200px">
       <br />
-      Pulse
+      探索
     </td>
     <td align="center">
       <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/explore2.jpg" width="200px">
       <br />
-      ChasingDots
+      探索
     </td>
   
   </tr>
@@ -60,12 +60,12 @@
     <td align="center">
       <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/sport1.jpg" width="200px">
       <br />
-      RotatingCircle
+      运动
     </td>
     <td align="center">
       <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/sport2.jpg" width="200px">
       <br />
-      FoldingCube
+      运动
     </td>
    
   </tr>
@@ -73,12 +73,12 @@
     <td align="center">
       <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/plan.jpg" width="200px">
       <br />
-      FadingGrid
+      计划
     </td>
     <td align="center">
       <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/me.jpg" width="200px">
       <br />
-      FadingGrid
+      我
     </td>
   </tr>
 </table>
