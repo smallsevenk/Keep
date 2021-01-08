@@ -29,15 +29,58 @@
 25.自适应缩放字体大小  
   
 ##Showcase  
-<image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/community.jpg" width="300">
-  <image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/explore1.jpg" width="300">  
-    
-<image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/explore2.jpg" width="300">
-  <image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/sport1.jpg" width="300">  
-
-<image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/sport2.jpg" width="300">
-  <image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/plan.jpg" width="300">  
-
-<image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/me.jpg" width="300">
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/community1.jpg" width="200px">
+      <br />
+      RotatingPlain
+    </td>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/community2.jpg" width="200px">
+      <br />
+      DoubleBounce
+    </td>
+ 
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/explore1.jpg" width="200px">
+      <br />
+      Pulse
+    </td>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/explore2.jpg" width="200px">
+      <br />
+      ChasingDots
+    </td>
+  
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/sport1.jpg" width="200px">
+      <br />
+      RotatingCircle
+    </td>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/sport2.jpg" width="200px">
+      <br />
+      FoldingCube
+    </td>
+   
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/plan.jpg" width="200px">
+      <br />
+      FadingGrid
+    </td>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/me.jpg" width="200px">
+      <br />
+      FadingGrid
+    </td>
+  </tr>
+</table>
 
 
