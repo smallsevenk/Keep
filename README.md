@@ -41,7 +41,6 @@
       <br />
       社区
     </td>
- 
   </tr>
   <tr>
     <td align="center">
@@ -54,7 +53,6 @@
       <br />
       探索
     </td>
-  
   </tr>
   <tr>
     <td align="center">
