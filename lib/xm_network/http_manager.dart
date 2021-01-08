@@ -2,6 +2,7 @@ import 'package:dio/dio.dart';
 import 'dart:async';
 
 import 'api.dart';
+import 'logs_Interceptors.dart';
 
 /*
  * 封装 restful 请求
@@ -55,14 +56,14 @@ class Z6HttpManager {
         data.toString() != '{}' ? data.toString() : params.toString();
 
     /// 打印请求相关信息：请求地址、请求方式、请求参数
-    print('请求方式：$method');
-    print('请求地址：$url');
-    print('请求参数：$pramas');
+    // print('请求方式：$method');
+    // print('请求地址：$url');
+    // print('请求参数：$pramas');
 
     Dio dio = createInstance();
     dio.options.method = method;
     var result;
-
+    dio.interceptors.add(HttpLogsInterceptors());
     try {
       Response response = await (Z6HttpManager.GET == method
           ? dio.request(url, queryParameters: params)

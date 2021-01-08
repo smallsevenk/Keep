@@ -92,7 +92,7 @@ class KeepCommRootSceneState extends State<KeepCommRootScene> {
   }
 
   Future<void> _fetchData() async {
-    Hot hot = await Z6Srv.queryHot(_position.toString(), '跑步');
+    Hot hot = await Z6Srv.queryHot(_position.toString(), '瑜伽');
     setState(() {
       if (_position == 0) {
         posts.clear();
