@@ -29,12 +29,56 @@
 25.自适应缩放字体大小  
   
 ##Showcase  
-<image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/community.jpg" width="300">
-<image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/explore1.jpg" width="300">  
-<image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/explore2.jpg" width="300">  
-<image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/sport1.jpg" width="300">  
-<image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/sport2.jpg" width="300">  
-<image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/plan.jpg" width="300">  
-<image src="https://github.com/smallsevenk/Keep/blob/master/screenShot/me.jpg" width="300">
+<table>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/community1.jpg" width="200px">
+      <br />
+      社区
+    </td>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/community2.jpg" width="200px">
+      <br />
+      社区
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/explore1.jpg" width="200px">
+      <br />
+      探索
+    </td>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/explore2.jpg" width="200px">
+      <br />
+      探索
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/sport1.jpg" width="200px">
+      <br />
+      运动
+    </td>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/sport2.jpg" width="200px">
+      <br />
+      运动
+    </td>
+   
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/plan.jpg" width="200px">
+      <br />
+      计划
+    </td>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/me.jpg" width="200px">
+      <br />
+      我
+    </td>
+  </tr>
+</table>
 
 
