@@ -38,6 +38,23 @@
   
 ## Showcase  
 <table>
+   <tr>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/shop1.jpg" width="200px">
+      <br />
+      商城
+    </td>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/shop2.jpg" width="200px">
+      <br />
+      商城
+    </td>
+      <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/shop3.jpg" width="200px">
+      <br />
+      商城
+    </td>
+  </tr>
   <tr>
     <td align="center">
       <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/community1.jpg" width="200px">
