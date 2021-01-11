@@ -30,7 +30,7 @@
 26.自定义Icon  
 27.Banner  
 28.秒杀倒计时  
-29.ScroolView监听及跳到制定位置  
+29.ScrollView监听及跳到制定位置  
 30.SKU单品选择控件封装  
 31.Warp生成标签按钮  
 32.RichText使用  
