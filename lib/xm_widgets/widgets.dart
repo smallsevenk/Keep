@@ -5,6 +5,25 @@ export 'buttons/button.dart';
 export 'text.dart';
 export 'empty.dart';
 
+import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:framework/public.dart';
+
+xmNetWorkImage(String url, double width,
+    {double height, String placeholdlerImgNm = 'icon'}) {
+  return CachedNetworkImage(
+    width: xmDp(width),
+    height: null != height ? xmDp(height) : xmDp(width),
+    imageUrl: url,
+    fit: BoxFit.cover,
+    placeholder: (context, url) {
+      return Image(
+          width: xmDp(width),
+          height: null != height ? xmDp(height) : xmDp(width),
+          image: AssetImage('res/imgs/$placeholdlerImgNm.png'));
+    },
+  );
+}
 // xwAlert(BuildContext context, Function okHandler,
 //     {String title, String content}) {
 //   List<Widget> actions = [
