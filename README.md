@@ -1,7 +1,7 @@
 # keep
 
 学习就要从撸App开始，Let's go.  
-如有所获，欢迎Star & Fork，我会在闲暇之余完善下去的，如果遇到问题，可以issues/email,看到就会回复。
+如有所获，欢迎Star & Fork，我会在闲暇之余完善下去的，如果遇到问题，可以issue/email,看到就会回复。
 
 ## 所学知识点
 1.配置AppIcon和启动图  
