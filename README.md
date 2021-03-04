@@ -1,6 +1,7 @@
 # keep
 
-学习就要从撸App开始，Let's go.
+学习就要从撸App开始，Let's go.  
+如有所获，欢迎Star & Fork，我会在闲暇之余完善下去的，如果遇到问题，可以issue/email,看到就会回复。
 
 ## 所学知识点
 1.配置AppIcon和启动图  
@@ -29,15 +30,34 @@
 25.自适应缩放字体大小
 26.自定义Icon  
 27.Banner  
-28.秒杀倒计时
-29.ScroolView监听及跳到制定位置  
+28.秒杀倒计时  
+29.ScrollView监听及跳到制定位置  
 30.SKU单品选择控件封装  
+31.Warp生成标签按钮  
+32.RichText使用  
 
 
 ...
   
 ## Showcase  
 <table>
+   <tr>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/shop1.jpg" width="200px">
+      <br />
+      商城
+    </td>
+    <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/shop2.jpg" width="200px">
+      <br />
+      商城
+    </td>
+      <td align="center">
+      <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/shop3.jpg" width="200px">
+      <br />
+      商城
+    </td>
+  </tr>
   <tr>
     <td align="center">
       <img src="https://github.com/smallsevenk/Keep/blob/master/screenShot/community1.jpg" width="200px">
@@ -89,4 +109,6 @@
   </tr>
 </table>
 
+## 免责声明：如果该开源项目涉及到侵权,麻烦请联系下我,我将立即删除。  
 
+  
