@@ -49,8 +49,7 @@ dependencies:
   date_format: ^1.0.6 #日期/时间格式化 
   flutterautotext: #自适应缩放字体大小
     git: https://github.com/LiuC520/flutterautotext.git
-  webview_flutter:
-    path: /Users/zick/zwork/tools/flutter_plugins/packages/webview_flutter
+  webview_flutter: ^2.0.1
   bubble_tab_indicator: 0.1.4 
   # flutter_localizations: #国际化 
     
